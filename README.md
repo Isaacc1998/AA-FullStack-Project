@@ -7,7 +7,7 @@
   * Users that aren't logged in can't use features such as creating flashcards or posting questions.
 3) Flashcards
   * Users can create flashcards, and make flashcard sets
-  * Option to make flashcard sets public or private
+  * Users can go through flashcard sets, shuffle the deck, mark which cards have       been mastered, etc.
   * Users can edit previously made flashcards
 4) Questions
   * Users can post questions, and edit questions
