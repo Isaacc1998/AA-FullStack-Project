@@ -20,3 +20,84 @@
   * Alerts to see if their questions have been answered
   * Users have their own profile that show their created flashcard sets and questions
 7) Production README
+
+
+
+## Schema
+
+`users`
+Column Name | Data Type | Details
+----------- | --------- | -------
+id | integer | not null, primary key
+username | string | not null, indexed, unique
+email | string | not null, indexed, unique
+password_digest | string | not null
+session_token | string | not null, indexed, unique
+created_at | datetime | not null
+updated_at | datetime | not null
+
+* index on username, unique: true
+* index on email, unique: true
+* index on session_token, unique: true
+* has_many flashcard_sets
+* has_many questions
+* has_many answers
+
+`flashcard`
+Column Name | Data Type | Details
+----------- | --------- | -------
+id | integer | not null, primary key
+front | string | not null
+back | string | not null
+set_id | integer | not null, indexed, foreign key
+created_at | datetime | not null
+updated_at | datetime | not null
+
+* set_id references flashcard_sets
+* index on set_id
+* belongs_to flashcard_set
+
+`flashcard_set`
+Column Name | Data Type | Details
+----------- | --------- | -------
+id | integer | not null, primary key
+title | string | not null, indexed
+author_id | integer | not null, indexed, foreign key
+created_at | datetime | not null
+updated_at | datetime | not null
+
+* author_id references users
+* index on author_id
+* belongs_to author
+* has_many flashcards
+
+`question`
+Column Name | Data Type | Details
+----------- | --------- | -------
+id | integer | not null, primary key
+body | string | not null
+author_id | integer | not null, indexed, foreign key
+created_at | datetime | not null
+updated_at | datetime | not null
+
+* author_id references users
+* index on author_id
+* belongs_to author
+* has_many answers
+
+`answer`
+Column Name | Data Type | Details
+----------- | --------- | -------
+id | integer | not null, primary key
+body | string | not null
+author_id | integer | not null, indexed, foreign key
+question_id | integer | not null, indexed, foreign key
+created_at | datetime | not null
+updated_at | datetime | not null
+
+* author_id references users
+* index on author_id
+* question_id references questions
+* index on question_id
+* belongs_to author
+* belongs_to questions
