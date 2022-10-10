@@ -1,0 +1,29 @@
+* {
+  font-family: sans-serif;
+}
+
+.display {
+  display: block;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* .create:hover .create:focus {
+} */
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 205px;
+  z-index: 1;
+}
+
+.menu-dropdown NavLink {
+  color: grey;
+  padding: 12px 16px;
+  display: block;
+}

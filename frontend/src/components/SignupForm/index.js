@@ -18,10 +18,7 @@ function SignupForm() {
     e.preventDefault();
 
     if (password === confirmPassword) {
-      let signupUser = dispatch(
-        sessionActions.signup({ email, username, password })
-      );
-      return signupUser;
+      return dispatch(sessionActions.signup({ email, username, password }));
     }
   };
 
