@@ -1,6 +1,8 @@
 export function storeCSRFToken(response) {
   const csrfToken = response.headers.get("X-CSRF-Token");
-  if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
+  if (csrfToken) {
+    sessionStorage.setItem("X-CSRF-Token", csrfToken);
+  }
 }
 
 export async function restoreCSRF() {
@@ -10,8 +12,13 @@ export async function restoreCSRF() {
 }
 
 async function csrfFetch(url, options = {}) {
-  options.method = options.method || "GET";
-  options.headers = options.headers || {};
+  if (!options.headers) {
+    options.headers = {};
+  }
+
+  if (!options.method) {
+    options.method = "GET";
+  }
 
   if (options.method.toUpperCase() !== "GET") {
     options.headers["Content-Type"] =
@@ -22,7 +29,6 @@ async function csrfFetch(url, options = {}) {
   const res = await fetch(url, options);
 
   if (res.status >= 400) throw res;
-
   return res;
 }
 
