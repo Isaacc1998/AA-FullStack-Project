@@ -10,11 +10,23 @@ h2 {
   cursor: pointer;
 }
 
+.home {
+  font-family: sans-serif;
+  font-size: medium;
+  font-weight: bold;
+}
+
+#home {
+  color: white;
+  text-decoration: none;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 1%;
+  background-color: rgb(166, 126, 126);
 }
 
 .leftNav {
@@ -59,6 +71,22 @@ input {
   padding: 10px;
 }
 
+#login {
+  font-family: sans-serif;
+  font-size: medium;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+#signup {
+  font-family: sans-serif;
+  font-size: medium;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
 /* #home {
   padding: 10%;
 }
@@ -94,6 +122,7 @@ input {
   color: grey;
   padding: 12px 16px;
   display: block;
+  text-decoration: none;
 }
 
 .menu-dropdown .nav:hover {

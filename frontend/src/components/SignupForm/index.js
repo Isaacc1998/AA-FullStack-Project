@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import "./signupForm.css";
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -10,59 +11,49 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password === confirmPassword) {
-      return dispatch(sessionActions.signup({ email, username, password }));
-    }
+    return dispatch(sessionActions.signup({ email, username, password }));
   };
 
   return (
     <>
-      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
+        <div className="signup">
+          <h2>Sign Up</h2>
+
           <input
+            className="email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Username
+          <label className="text">Email</label>
           <input
+            className="username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+          <label className="text">Username</label>
           <input
+            className="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign Up</button>
+          <label className="text">Password</label>
+          <button className="submit" type="submit">
+            Sign Up
+          </button>
+        </div>
       </form>
     </>
   );

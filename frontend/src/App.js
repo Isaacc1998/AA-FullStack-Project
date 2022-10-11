@@ -11,7 +11,7 @@ function App() {
       menu.style.display = "none";
     }
     if (!e.target.matches(".dropdown") && !e.target.matches(".user")) {
-      let dropdown = document.getElementById("dropdown");
+      let dropdown = document.getElementById("dropdownProfile");
       dropdown.style.display = "none";
     }
   };
