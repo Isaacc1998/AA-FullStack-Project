@@ -8,7 +8,6 @@ function App() {
   return (
     <div>
       <NavBar />
-      <h1 id="logo">Flashlet</h1>
       <Switch>
         <Route path="/login">
           <LoginFormPage />
