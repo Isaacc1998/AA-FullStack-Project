@@ -3,19 +3,29 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { NavLink } from "react-router-dom";
-import "./NavBar.css";
+import ProfileNav from "./profileNav";
+import "./navBar.css";
 
 function NavBar() {
   const sessionUser = useSelector((state) => {
     return state.session.user;
   });
-  let page;
-  window.onclick = (e) => {
-    if (!e.target.matches(".menu-dropdown") && !e.target.matches(".create")) {
-      let menu = document.getElementById("createMenu");
-      menu.style.display = "none";
-    }
-  };
+  let display;
+
+  if (sessionUser) {
+    display = <ProfileNav user={sessionUser} />;
+  } else {
+    display = (
+      <>
+        <NavLink id="login" className="nav" exact to="/login">
+          Log in
+        </NavLink>
+        <NavLink id="signup" className="nav" exact to="/signup">
+          Sign up
+        </NavLink>
+      </>
+    );
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -50,14 +60,7 @@ function NavBar() {
       </div>
       <div className="rightNav">
         <input type="text" placeholder="Study sets, questions..." />
-        <div className="auth">
-          <NavLink id="login" className="nav" exact to="/login">
-            Log in
-          </NavLink>
-          <NavLink id="signup" className="nav" exact to="/signup">
-            Sign up
-          </NavLink>
-        </div>
+        <div className="auth">{display}</div>
       </div>
     </div>
   );
