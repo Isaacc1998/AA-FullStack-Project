@@ -1,0 +1,22 @@
+{
+  "name": "aa-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isaacc1998/AA-FullStack-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Isaacc1998/AA-FullStack-Project/issues"
+  },
+  "homepage": "https://github.com/Isaacc1998/AA-FullStack-Project#readme"
+}

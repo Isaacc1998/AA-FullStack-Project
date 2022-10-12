@@ -22,7 +22,6 @@ function LoginForm() {
   if (currentUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
-    // debugger;
     e.preventDefault();
     setErrors([]);
 
@@ -37,7 +36,6 @@ function LoginForm() {
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
-        // console.log(errors);
       }
     );
   };
