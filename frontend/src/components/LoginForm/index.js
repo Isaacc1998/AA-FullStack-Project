@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import "./signupForm.css";
 
-function SignupForm() {
+import "./loginForm.css";
+
+function LoginForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const currentUser = useSelector((state) => state.session.user);
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -19,12 +19,14 @@ function SignupForm() {
     }
   }, [errors]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (currentUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
+    // debugger;
     e.preventDefault();
+    setErrors([]);
 
-    return dispatch(sessionActions.signup({ email, username, password })).catch(
+    return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         let data;
         try {
@@ -35,56 +37,61 @@ function SignupForm() {
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
-        console.log(errors);
+        // console.log(errors);
       }
+    );
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setCredential("Demo");
+    setPassword("password");
+    return dispatch(
+      sessionActions.login({ credential: "Demo", password: "password" })
     );
   };
 
   return (
     <>
       <form id="form" onSubmit={handleSubmit}>
-        <div className="signup">
-          <h2 className="title">Sign Up</h2>
-
+        <div className="login">
+          <h2 className="title">Log In</h2>
           <div id="errors">
             {errors.map((error) => (
               <div key={error}> • {error}</div>
             ))}
           </div>
+          <input
+            className="credential"
+            type="text"
+            value={credential}
+            placeholder="Type your email address or username"
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
           <label className="text">Email</label>
           <input
-            className="email"
-            type="text"
-            value={email}
-            placeholder="user@quizlet.com"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <label className="text">Username</label>
-          <input
-            className="username"
-            type="text"
-            value={username}
-            placeholder="quizletUser"
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <label className="text">Password</label>
-          <input
-            className="password2"
+            className="password"
             type="password"
             value={password}
-            placeholder="••••••••"
+            placeholder="Type your password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <label className="text">Password</label>
           <button className="submit" type="submit">
-            Sign Up
+            Log in
           </button>
+          <input
+            onClick={handleClick}
+            className="submit"
+            type="button"
+            value="Log in as Demo User"
+          />
         </div>
       </form>
     </>
   );
 }
 
-export default SignupForm;
+export default LoginForm;

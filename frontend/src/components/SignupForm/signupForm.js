@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -11,33 +11,13 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-
-  useEffect(() => {
-    if (errors.length > 0) {
-      document.getElementById("errors").style.display = "block";
-    }
-  }, [errors]);
 
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    return dispatch(sessionActions.signup({ email, username, password })).catch(
-      async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-        console.log(errors);
-      }
-    );
+    return dispatch(sessionActions.signup({ email, username, password }));
   };
 
   return (
@@ -45,12 +25,6 @@ function SignupForm() {
       <form id="form" onSubmit={handleSubmit}>
         <div className="signup">
           <h2 className="title">Sign Up</h2>
-
-          <div id="errors">
-            {errors.map((error) => (
-              <div key={error}> • {error}</div>
-            ))}
-          </div>
           <label className="text">Email</label>
           <input
             className="email"

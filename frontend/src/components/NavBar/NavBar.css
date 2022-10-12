@@ -5,6 +5,10 @@
   font-family: sans-serif;
 }
 
+#logo {
+  color: rgb(255, 183, 195);
+}
+
 h2 {
   top: 100px;
   cursor: pointer;
@@ -113,7 +117,8 @@ input {
 .menu-dropdown {
   display: none;
   position: absolute;
-  background-color: white;
+  border-radius: 5px;
+  background-color: pink;
   min-width: 205px;
   z-index: 1;
 }
