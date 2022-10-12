@@ -1,0 +1,44 @@
+.dropdownProfile {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 205px;
+  z-index: 1;
+}
+
+.dropdownProfile .nav {
+  display: flex;
+  padding-left: 5%;
+  align-items: center;
+  color: grey;
+  padding: 12px, 16px;
+  height: 100px;
+  text-decoration: none;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 15px;
+  height: 100px;
+}
+
+.dropdownProfile .nav:hover {
+  background-color: #d3d3d3;
+}
+
+.userInfo {
+  display: block;
+}
+
+.stuff {
+  padding: 10px, 20px;
+  font-family: sans-serif;
+  color: grey;
+  font-weight: lighter;
+}
+
+.text {
+  margin-top: 10px;
+}
