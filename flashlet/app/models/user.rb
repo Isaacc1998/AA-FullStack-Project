@@ -25,6 +25,10 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :flashcard_sets,
+    foreign_key: :author_id,
+    class_name: :FlashcardSet
+
   def self.find_by_credentials(credential,password)
 
     if URI::MailTo::EMAIL_REGEXP.match(credential)
