@@ -13,6 +13,13 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('users')
   
     puts "Creating users..."
+
+    User.create!(
+      username: 'Demo', 
+      email: 'demo@user.io', 
+      password: 'password'
+    )
+    
     User.create!(
       username: 'Joe', 
       email: 'Joe@gmail.com', 
@@ -24,6 +31,8 @@ ApplicationRecord.transaction do
       email: 'Bob@gmail.com', 
       password: 'bobiscool'
     )
+
+    
   
     puts "Done!"
   end
