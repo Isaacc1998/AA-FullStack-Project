@@ -24,9 +24,9 @@ const getFlashcardSets = () => {
   const res = fetch("/api/flashcard_sets");
 };
 
-const flashcardSetReducer = (state = {}, action) => {
-  switch (action.type) {
-  }
-};
+// const flashcardSetReducer = (state = {}, action) => {
+//   switch (action.type) {
+//   }
+// };
 
 export default flashcardSetReducer;
