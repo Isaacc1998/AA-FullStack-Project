@@ -11,7 +11,6 @@
 #
 class Flashcard < ApplicationRecord
 
-
     belongs_to :flashcard_set,
         foreign_key: :set_id,
         class_name: :FlashcardSet
