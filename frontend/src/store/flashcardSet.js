@@ -31,19 +31,19 @@ const updateSet = (set) => ({
   set,
 });
 
-const getFlashcardSets = () => async (dispatch) => {
+export const getFlashcardSets = () => async (dispatch) => {
   const res = await csrfFetch("/api/flashcard_sets", { method: "GET" });
   const data = await res.json();
   dispatch(receiveSets(data));
 };
 
-const getFlashcardSet = (setId) => async (dispatch) => {
+export const getFlashcardSet = (setId) => async (dispatch) => {
   const res = await csrfFetch(`/api/flashcard_set/${setId}`);
   const data = await res.json();
   dispatch(receiveSet(data));
 };
 
-const create = (set) => async (dispatch) => {
+export const create = (set) => async (dispatch) => {
   const { title } = set;
   const res = await csrfFetch("api/flashcard_sets", {
     method: "POST",
@@ -53,7 +53,7 @@ const create = (set) => async (dispatch) => {
   dispatch(createSet(data));
 };
 
-const remove = (setId) => async (dispatch) => {
+export const remove = (setId) => async (dispatch) => {
   const res = await csrfFetch(`api/flashcard_sets/${setId}`, {
     method: "DELETE",
   });
@@ -61,10 +61,10 @@ const remove = (setId) => async (dispatch) => {
   return res;
 };
 
-const update = (set) => async (dispatch) => {
+export const update = (set) => async (dispatch) => {
   const { title } = set;
 
-  const res = await csrfFetch(`api/flashcar_sets/${set.id}`, {
+  const res = await csrfFetch(`api/flashcard_sets/${set.id}`, {
     method: "PUT",
     body: JSON.stringify({ title }),
   });

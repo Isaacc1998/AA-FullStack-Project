@@ -32,6 +32,20 @@ ApplicationRecord.transaction do
       password: 'bobiscool'
     )
 
+    FlashcardSet.create!(
+      title: 'Maths',
+      author_id: 1
+    )
+
+    FlashcardSet.create!(
+      title: 'Chaineese',
+      author_id: 1
+    )
+
+    FlashcardSet.create!(
+      title: 'Enrish',
+      author_id: 2
+    )
     
   
     puts "Done!"
