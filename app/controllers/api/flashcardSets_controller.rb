@@ -11,9 +11,9 @@ class Api::FlashcardSetsController < ApplicationController
 
     def create 
         @set = FlashcardSet.new(flashcard_set_params)
-        @set.author_id = params[:user_id] 
+        @set.author_id = current_user.id
         if @set.save
-            render "api/flashcardsSets/show"
+            render "api/flashcardSets/show"
         else  
             render json: {errors: ['YOU NEED TWO CARDS TO CREATE A SET']}
         end
@@ -21,10 +21,14 @@ class Api::FlashcardSetsController < ApplicationController
 
     def update
         @set = FlashcardSet.find_by(id: params[:id])
-        if @set.update(flashcard_set_params)
-            render "api/flashcardSets/show"
+        if @set.author_id == current_user.id
+            if @set.update(flashcard_set_params)
+                render "api/flashcardSets/show"
+            else  
+                render json: { errors: @user.errors.full_messages}, status: :unprocessable_entity
+            end
         else  
-            render json: { errors: @user.errors.full_messages}, status: :unprocessable_entity
+            render json: { errors: ['You can only update your own flashcards!']}
         end
     end 
 
@@ -32,7 +36,7 @@ class Api::FlashcardSetsController < ApplicationController
         @set = FlashcardSet.find(params[:id])
         if @set.author_id == current_user.id
             @set.destroy 
-        end  
+        end
     end
 
     private 

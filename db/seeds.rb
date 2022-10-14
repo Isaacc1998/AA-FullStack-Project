@@ -38,12 +38,12 @@ ApplicationRecord.transaction do
     )
 
     FlashcardSet.create!(
-      title: 'Chaineese',
+      title: 'Chineese',
       author_id: 1
     )
 
     FlashcardSet.create!(
-      title: 'Enrish',
+      title: 'English',
       author_id: 2
     )
     

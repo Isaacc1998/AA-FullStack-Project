@@ -27,7 +27,8 @@ class User < ApplicationRecord
 
   has_many :flashcard_sets,
     foreign_key: :author_id,
-    class_name: :FlashcardSet
+    class_name: :FlashcardSet,
+    dependent: :destroy
 
   def self.find_by_credentials(credential,password)
 

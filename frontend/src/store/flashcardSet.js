@@ -31,14 +31,25 @@ const updateSet = (set) => ({
   set,
 });
 
-export const getFlashcardSets = () => async (dispatch) => {
+export const getAllFlashcardSets = () => async (dispatch) => {
   const res = await csrfFetch("/api/flashcard_sets", { method: "GET" });
   const data = await res.json();
   dispatch(receiveSets(data));
 };
 
+export const getUserFlashcardSets = () => async (dispatch) => {
+  const res = await csrfFetch("/api/users", {
+    method: "GET",
+  });
+  const data = await res.json();
+
+  dispatch(receiveSets(data));
+};
+
+// export const getRecentFlashcardSets = () => async (dispatch) => {};
+
 export const getFlashcardSet = (setId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/flashcard_set/${setId}`);
+  const res = await csrfFetch(`/api/flashcard_sets/${setId}`);
   const data = await res.json();
   dispatch(receiveSet(data));
 };
@@ -76,19 +87,25 @@ const flashcardSetReducer = (state = {}, action) => {
   let newState = { ...state };
   switch (action.type) {
     case RECEIVE_SETS:
+      // console.log(action.sets, "boy");
+      // let newObj = {};
+      // action.sets.forEach((obj) => {
+      //   newObj[obj.id] = obj;
+      // });
+      // console.log(newObj, "newobj dadi");
+
       return { ...newState, ...action.sets };
     case RECEIVE_SET:
-      newState[action.set.id] = action.set;
+      newState[action.set.flashcardSets.id] = action.set;
       return newState;
     case CREATE_SET:
-      return { ...newState, set: action.set };
-    //change set to flashcardSet? or flashcard_set?
+      return { ...newState, ...action.set };
     case UPDATE_SET:
-      newState[action.set.id] = action.set;
+      newState[action.set.flashcardSets.id] = action.set;
       return newState;
     case DELETE_SET:
-      return { ...state, set: null };
-    //change set to flashcardSet? or flashcard_set?
+      delete newState[action.setId];
+      return newState;
     default:
       return state;
   }

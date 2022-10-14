@@ -1,10 +1,16 @@
 class Api::UsersController < ApplicationController
   wrap_parameters include: User.attribute_names + ['password']
+  '/api/users/index'
 
   def index 
-    @sets = FlashcardSet.where("author_id = ?", params[:id])
-    render "api/flashcardSets/index"
+    # @sets = FlashcardSet.where("author_id = ?", current_user.id);
+    # render "api/flashcardSets/index"
   end 
+
+  def show 
+    @user = User.find(params[:id])
+    render "api/users/show"
+  end
 
   def create
     @user = User.new(user_params)

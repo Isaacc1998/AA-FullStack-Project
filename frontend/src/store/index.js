@@ -4,7 +4,8 @@ import sessionReducer from "./session";
 import flashcardSetReducer from "./flashcardSet";
 const rootReducer = combineReducers({
   session: sessionReducer,
-  set: flashcardSetReducer,
+  sets: flashcardSetReducer,
+  // sets: flashcardSetReducer,
 });
 
 let enhancer;
