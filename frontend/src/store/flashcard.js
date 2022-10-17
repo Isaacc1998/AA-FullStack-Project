@@ -31,6 +31,16 @@ const updateFlashcard = (flashcard) => ({
   flashcard,
 });
 
+export const getFlashcards = (setId) => async (dispatch) => {
+  console.log(setId);
+  const res = await csrfFetch(`/api/flashcards/?setId=${setId}`, {
+    method: "GET",
+  });
+  const data = await res.json();
+  console.log(data);
+  dispatch(receiveFlashcards(data));
+};
+
 export const getFlashcard = (flashcardId) => async (dispatch) => {
   const res = await csrfFetch(`api/flashcards/${flashcardId}`);
   const data = await res.json();

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create]
     resource :session, only: [:show, :create, :destroy]
     resources :flashcard_sets, only: [:index, :show, :create, :update, :destroy]
-    resources :flashcards, only: [:show, :create, :update, :destroy] 
+    resources :flashcards, only: [:index, :show, :create, :update, :destroy] 
   end
 
   get '*path', to: "static_pages#frontend_index"

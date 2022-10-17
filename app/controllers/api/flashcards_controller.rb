@@ -1,5 +1,10 @@
 class Api::FlashcardsController < ApplicationController
     
+    def index 
+        @flashcards = Flashcard.where("set_id = ?", params[:setId].to_i)
+        render "api/flashcards/index"
+    end 
+
     def show 
         @flashcard = Flashcard.find(params[:id])
         render "api/flashcards/show"

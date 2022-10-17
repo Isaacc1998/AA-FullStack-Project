@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./profile.css";
 function ProfileNav({ user }) {
@@ -40,9 +40,11 @@ function ProfileNav({ user }) {
           <NavLink id="settings" className="nav" to="/settings">
             Settings
           </NavLink>
-          <NavLink onClick={logout} id="logout" className="nav" to="/">
-            Logout
-          </NavLink>
+          <div onClick={logout}>
+            <NavLink to="/home" id="logout" className="nav">
+              Logout
+            </NavLink>
+          </div>
         </div>
       </div>
     </>

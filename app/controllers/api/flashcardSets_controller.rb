@@ -5,7 +5,8 @@ class Api::FlashcardSetsController < ApplicationController
     end
 
     def show 
-        @set = FlashcardSet.find_by(id: params[:id])
+        # @set = FlashcardSet.find_by(id: params[:id])
+        @flashcards = Flashcard.where("set_id = ?", params[:id])
         render "api/flashcardSets/show"
     end 
 

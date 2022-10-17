@@ -53,7 +53,6 @@ export const logout = () => async (dispatch) => {
   });
   storeCurrentUser(null);
   dispatch(removeSession());
-  return response;
 };
 
 export const signup = (user) => async (dispatch) => {

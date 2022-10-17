@@ -4,6 +4,7 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import ProfilePage from "./components/ProfilePage";
 import NavBar from "./components/NavBar";
+import Home from "./components/Home";
 import FlashcardSet from "./components/FlashcardSet";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -23,7 +24,12 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route exact path="/"></Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
         <Route path="/login">
           <LoginForm />
         </Route>

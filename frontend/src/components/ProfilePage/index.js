@@ -4,20 +4,20 @@ import { NavLink, Redirect } from "react-router-dom";
 // import { NavLink, Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import * as setActions from "../../store/flashcardSet";
+import FlashcardSet from "../FlashcardSet";
 import "./ProfilePage.css";
 
 function ProfilePage() {
   const dispatch = useDispatch();
   const sets = useSelector((state) => state.sets);
-  const [setId, setSetId] = useState(-1);
+  const [set, setSet] = useState(-1);
 
   useEffect(() => {
     dispatch(setActions.getUserFlashcardSets());
   }, []);
 
-  if (setId !== -1) {
-    console.log(setId);
-    return <Redirect to={`/flashcardSet/${setId}`} />;
+  if (set !== -1) {
+    return <FlashcardSet set={set}></FlashcardSet>;
   }
 
   return (
@@ -35,7 +35,7 @@ function ProfilePage() {
             key={sets[set].id}
             className="set"
             onClick={(e) => {
-              setSetId(set);
+              setSet(sets[set]);
             }}
           >
             <div className="setDetails">
