@@ -7,7 +7,7 @@ class Api::FlashcardsController < ApplicationController
 
     def create 
         @flashcard = Flashcard.new(flashcard_params)
-        @flashcard[set_id] = params[:set_id]
+        @flashcard.set_id = params[:set_id]
         if @flashcard.save 
             render "api/flashcards/show"
         else  
@@ -30,9 +30,11 @@ class Api::FlashcardsController < ApplicationController
 
     def destroy
 
+    end
+
     private 
 
     def flashcard_params 
-        params.require(:flashcard).permit(:front, :back)
+        params.require(:flashcard).permit(:front, :back, :set_id)
     end
 end

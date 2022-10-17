@@ -2,7 +2,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
+import ProfilePage from "./components/ProfilePage";
 import NavBar from "./components/NavBar";
+import FlashcardSet from "./components/FlashcardSet";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   window.onclick = (e) => {
@@ -28,11 +31,19 @@ function App() {
           <SignupForm />
         </Route>
         <Route path="/home"></Route>
+        <Route path="/profilePage">
+          <ProfilePage />
+        </Route>
         <Route path="/createSet"></Route>
         <Route path="/createFolder"></Route>
         <Route path="/createClass"></Route>
         <Route path="/search"></Route>
-        <Route path="/users/:userId"></Route>
+        <Route path="/users/:userId">
+          <ProfilePage />
+        </Route>
+        <Route path="/flashcardSet/:setId">
+          <FlashcardSet />
+        </Route>
       </Switch>
     </div>
   );

@@ -34,7 +34,7 @@ function ProfileNav({ user }) {
           </div>
         </div>
         <div className="options">
-          <NavLink id="profile" className="nav" exact to="/users/:userId">
+          <NavLink id="profile" className="nav" exact to={`/users/${user.id}`}>
             Profile
           </NavLink>
           <NavLink id="settings" className="nav" to="/settings">

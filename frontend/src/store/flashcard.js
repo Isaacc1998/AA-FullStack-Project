@@ -38,8 +38,8 @@ export const getFlashcard = (flashcardId) => async (dispatch) => {
 };
 
 export const create = (flashcard) => async (dispatch) => {
-  const { front, back } = flashcard;
-  const res = await csrfFetch("api/flashcards", {
+  const { front, back, set_id } = flashcard;
+  const res = await csrfFetch("/api/flashcards", {
     method: "POST",
     body: JSON.stringify({
       front,
@@ -48,6 +48,7 @@ export const create = (flashcard) => async (dispatch) => {
     }),
   });
   const data = await res.json();
+  console.log("test");
   dispatch(createFlashcard(data));
 };
 
@@ -72,6 +73,25 @@ export const remove = (flashcardId) => async (dispatch) => {
   return res;
 };
 
-const flashcardReducer = (state = {}, action) => {};
+const flashcardReducer = (state = {}, action) => {
+  let newState = { ...state };
+  switch (action.type) {
+    case RECEIVE_FLASHCARDS:
+      return { ...newState, ...action.flashcards };
+    case RECEIVE_FLASHCARD:
+      newState[action.flashcard.flashcards.id] = action.set;
+      return newState;
+    case CREATE_FLASHCARD:
+      return { ...newState, ...action.flashcard };
+    case UPDATE_FLASHCARD:
+      newState[action.flashcard.flashcards.id] = action.set;
+      return newState;
+    case DELETE_FLASHCARD:
+      delete newState[action.flashcardId];
+      return newState;
+    default:
+      return state;
+  }
+};
 
 export default flashcardReducer;

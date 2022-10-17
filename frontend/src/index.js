@@ -8,6 +8,7 @@ import configureStore from "./store";
 import csrfFetch, { restoreCSRF } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import * as setActions from "./store/flashcardSet";
+import * as flashcardActions from "./store/flashcard";
 
 const store = configureStore();
 
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== "production") {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.setActions = setActions;
+  window.flashcardActions = flashcardActions;
 }
 
 function Root() {

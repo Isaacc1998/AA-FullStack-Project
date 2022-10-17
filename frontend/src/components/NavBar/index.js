@@ -60,7 +60,11 @@ function NavBar() {
         </div>
       </div>
       <div className="rightNav">
-        <input type="text" placeholder="Study sets, questions..." />
+        <input
+          className="search"
+          type="text"
+          placeholder="Study sets, questions..."
+        />
         <div className="auth">{display}</div>
       </div>
     </div>

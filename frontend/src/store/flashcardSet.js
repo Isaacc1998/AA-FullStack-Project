@@ -37,6 +37,7 @@ export const getAllFlashcardSets = () => async (dispatch) => {
   dispatch(receiveSets(data));
 };
 
+//add user as params to make dynamically get flashcard set based on user profile
 export const getUserFlashcardSets = () => async (dispatch) => {
   const res = await csrfFetch("/api/users", {
     method: "GET",

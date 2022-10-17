@@ -1,0 +1,64 @@
+html {
+  overflow: hidden;
+  height: 100vh;
+}
+.background {
+  position: relative;
+  border-top-style: solid;
+  border-color: #e3bdc0;
+  overflow: auto;
+  height: 100vh;
+  background-color: rgb(166, 126, 126);
+}
+
+.setsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 278px;
+  margin-right: 278px;
+}
+
+.set {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  width: 1220px;
+  height: 70.5px;
+  margin: 0.6%;
+  border-radius: 0.25rem;
+  border-bottom: 0.25rem solid rgba(255, 255, 255, 0);
+  background-color: #e3bdc0;
+}
+
+.set:hover {
+  border-bottom: 5px solid rgb(241, 238, 241);
+}
+
+.setDetails {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+}
+
+.setHeader {
+  margin-top: 0.5%;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 19px;
+  color: white;
+}
+
+.searchSets {
+  font-family: hurme_no2-webfont, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  width: 197.5px;
+  height: 34.5px;
+  background-color: #e3bdc0;
+}

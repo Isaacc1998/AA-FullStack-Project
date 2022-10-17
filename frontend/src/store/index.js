@@ -2,10 +2,11 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import flashcardSetReducer from "./flashcardSet";
+import flashcardReducer from "./flashcard";
 const rootReducer = combineReducers({
   session: sessionReducer,
   sets: flashcardSetReducer,
-  // sets: flashcardSetReducer,
+  flashcards: flashcardReducer,
 });
 
 let enhancer;
