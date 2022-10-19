@@ -1,3 +1,17 @@
+@font-face {
+  font-family: hurme;
+  src: url(../../fonts/HurmeGeometricSans2-Regular.woff2) format("woff2"),
+    url(../../fonts/HurmeGeometricSans2-Regular.woff) format("woff");
+  display: swap;
+}
+* {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+::placeholder {
+  color: azure;
+}
+
 .background3 {
   display: flex;
   flex-direction: column;
@@ -7,7 +21,9 @@
   border-top-style: solid;
   border-color: #e3bdc0;
   overflow: auto;
-  height: 100vh;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 100%;
   background-color: rgb(166, 126, 126);
 }
 
@@ -16,20 +32,23 @@
   height: 64px;
   margin-top: 42px;
   margin-bottom: 10px;
-  font-family: sans-serif;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 30px;
   font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  line-height: 1.2;
   color: white;
 }
 
 .createForm {
   display: flex;
   flex-direction: column;
-  justify-content: center, space-between;
+  justify-content: space-around;
   align-items: center;
-
   width: 1220px;
-  height: 85%;
+  height: 216px;
 }
 
 .addTitle {
@@ -50,10 +69,12 @@
 .titleHead {
   width: 1188px;
   height: 16px;
-  font-family: sans-serif;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
+  font-weight: 500;
+  font-kerning: normal;
   margin-top: 0.5%;
-  color: rgb(189, 145, 145);
+  color: azure;
 }
 
 .titleText {
@@ -64,13 +85,182 @@
   padding-top: 0;
   padding-right: 0;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   color: white;
   background-color: #e3bdc0;
 }
 
 .description {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: normal;
+  line-height: 1.4;
   width: 1220px;
   height: 120px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 0.5rem;
+  font-size: 16px;
+  font-weight: 500;
   background-color: #e3bdc0;
+  color: white;
+}
+
+.addCards {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  margin-top: 5%;
+}
+.newCard {
+  width: 1220px;
+  height: 182px;
+  margin-bottom: 1.5%;
+  border-radius: 0.5rem;
+  background-color: #e3bdc0;
+}
+
+.cardNum {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  color: rgb(242, 235, 235);
+  width: 1220px;
+  height: 60px;
+  padding: 12px;
+  padding-left: 27px;
+  padding-top: 20px;
+  border-bottom: 2px solid rgb(177, 133, 121);
+}
+
+.cardInfo {
+  display: flex;
+  align-content: flex-start;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  padding-bottom: 24px;
+}
+
+.cardRight {
+  width: 566px;
+  height: 84px;
+  padding-left: 12px;
+  padding-top: 28px;
+  padding-right: 20px;
+}
+
+.termInput {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 530px;
+  font-weight: 300;
+  font-size: 18px;
+  font-kerning: normal;
+  color: white;
+  padding-left: 0;
+  padding-bottom: 6px;
+  background-color: #e3bdc0;
+}
+
+.termBorder {
+  height: 3px;
+  background-color: rgb(213, 158, 145);
+}
+
+.term {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  font-kerning: normal;
+  letter-spacing: 0.01rem;
+  color: rgb(237, 228, 228);
+  margin-top: 1.25%;
+}
+
+.cardLeft {
+  width: 500px;
+  height: 84px;
+  padding-left: 12px;
+  padding-top: 28px;
+  padding-right: 20px;
+}
+
+.defInput {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 468px;
+  font-weight: 300;
+  font-size: 18px;
+  font-kerning: normal;
+  color: white;
+  padding-left: 0;
+  padding-bottom: 6px;
+  background-color: #e3bdc0;
+}
+
+.definition {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  font-kerning: normal;
+  letter-spacing: 0.01rem;
+  color: rgb(237, 228, 228);
+  margin-top: 1.25%;
+}
+
+.addSlot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1220px;
+  height: 180px;
+  border-radius: 0.5rem;
+  background-color: #e3bdc0;
+}
+
+.num2 {
+  position: absolute;
+  left: 58px;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  color: rgb(145, 127, 127);
+}
+
+.add {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.075rem;
+  font-kerning: normal;
+  border-bottom-style: solid;
+  border-bottom-width: 5px;
+  border-color: #fc99a1;
+  padding-bottom: 0.8%;
+  cursor: pointer;
+  color: white;
+}
+
+.add:hover {
+  color: #41b8d6;
+  border-color: rgb(144, 255, 218);
+}
+
+#submitSet {
+  position: relative;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  width: 115px;
+  height: 64px;
+  background-color: #fc99a1;
+  color: white;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  left: 552px;
+  cursor: pointer;
+}
+
+#submitSet:hover {
+  background-color: #d9868c;
 }
