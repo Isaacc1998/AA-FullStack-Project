@@ -17,6 +17,7 @@ function ProfilePage() {
   }, []);
 
   if (set !== -1) {
+    //how to call this in the App while passing in params?
     return <FlashcardSet set={set}></FlashcardSet>;
   }
 

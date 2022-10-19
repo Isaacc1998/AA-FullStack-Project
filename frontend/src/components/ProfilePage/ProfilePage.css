@@ -35,6 +35,7 @@ html {
 }
 
 .set:hover {
+  transition-duration: 400ms;
   border-bottom: 5px solid rgb(241, 238, 241);
 }
 

@@ -32,24 +32,26 @@ const updateFlashcard = (flashcard) => ({
 });
 
 export const getFlashcards = (setId) => async (dispatch) => {
-  console.log(setId);
-  const res = await csrfFetch(`/api/flashcards/?setId=${setId}`, {
+  const res = await csrfFetch(`/api/flashcard_sets/${setId}/flashcards`, {
     method: "GET",
   });
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   dispatch(receiveFlashcards(data));
 };
 
-export const getFlashcard = (flashcardId) => async (dispatch) => {
-  const res = await csrfFetch(`api/flashcards/${flashcardId}`);
+export const getFlashcard = (params) => async (dispatch) => {
+  const { flashcardId, setId } = params;
+  const res = await csrfFetch(
+    `api/flashcard_sets/${setId}/flashcards/${flashcardId}`
+  );
   const data = await res.json();
   dispatch(receiveFlashcard(data));
 };
 
 export const create = (flashcard) => async (dispatch) => {
   const { front, back, set_id } = flashcard;
-  const res = await csrfFetch("/api/flashcards", {
+  const res = await csrfFetch(`/api/flashcard_sets/${set_id}/flashcards`, {
     method: "POST",
     body: JSON.stringify({
       front,
@@ -58,27 +60,33 @@ export const create = (flashcard) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  console.log("test");
   dispatch(createFlashcard(data));
 };
 
 export const update = (flashcard) => async (dispatch) => {
-  const { front, back } = flashcard;
-  const res = await csrfFetch(`api/flashcards/${flashcard.id}`, {
-    method: "PUT",
-    body: JSON.stringify({
-      front,
-      back,
-    }),
-  });
+  const { front, back, set_id } = flashcard;
+  const res = await csrfFetch(
+    `api/flashcard_sets/${set_id}/flashcards/${flashcard.id}`,
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        front,
+        back,
+      }),
+    }
+  );
   const data = await res.json();
   dispatch(updateFlashcard(data));
 };
 
-export const remove = (flashcardId) => async (dispatch) => {
-  const res = await csrfFetch(`api/flashcards/${flashcardId}`, {
-    method: "DELETE",
-  });
+export const remove = (params) => async (dispatch) => {
+  const { flashcardId, set_id } = params;
+  const res = await csrfFetch(
+    `/api/flashcard_sets/${set_id}/flashcards/${flashcardId}`,
+    {
+      method: "DELETE",
+    }
+  );
   dispatch(deleteFlashcard(flashcardId));
   return res;
 };

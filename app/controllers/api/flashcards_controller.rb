@@ -1,12 +1,12 @@
 class Api::FlashcardsController < ApplicationController
     
     def index 
-        @flashcards = Flashcard.where("set_id = ?", params[:setId].to_i)
-        render "api/flashcards/index"
+        @flashcards = Flashcard.where("set_id = ?", params[:flashcard_set_id])
+        render "api/flashcards/index"   
     end 
 
     def show 
-        @flashcard = Flashcard.find(params[:id])
+        @flashcard = Flashcard.find_by(id: params[:id])
         render "api/flashcards/show"
     end 
 

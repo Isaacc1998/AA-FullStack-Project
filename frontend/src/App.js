@@ -6,7 +6,7 @@ import ProfilePage from "./components/ProfilePage";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import FlashcardSet from "./components/FlashcardSet";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import CreateSet from "./components/CreateSet";
 
 function App() {
   window.onclick = (e) => {
@@ -36,13 +36,13 @@ function App() {
         <Route path="/signup">
           <SignupForm />
         </Route>
-        <Route path="/home"></Route>
         <Route path="/profilePage">
           <ProfilePage />
         </Route>
-        <Route path="/createSet"></Route>
+        <Route path="/createSet">
+          <CreateSet />
+        </Route>
         <Route path="/createFolder"></Route>
-        <Route path="/createClass"></Route>
         <Route path="/search"></Route>
         <Route path="/users/:userId">
           <ProfilePage />
