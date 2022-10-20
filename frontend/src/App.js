@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import FlashcardSet from "./components/FlashcardSet";
 import CreateSet from "./components/CreateSet";
-
+import { useSelector } from "react-redux";
 function App() {
   window.onclick = (e) => {
     if (!e.target.matches(".menu-dropdown") && !e.target.matches(".create")) {
@@ -19,7 +19,6 @@ function App() {
       dropdown.style.display = "none";
     }
   };
-
   return (
     <div>
       <NavBar />

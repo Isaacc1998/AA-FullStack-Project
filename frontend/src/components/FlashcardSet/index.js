@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import * as flashcardActions from "../../store/flashcard";
+import * as setActions from "../../store/flashcardSet";
 import Flashcard from "./flashcard";
 import "./FlashcardSet.css";
 let i = 0;
@@ -10,11 +12,14 @@ let filled = 0;
 //   return () => setChange(change + 1);
 // }
 
-function FlashcardSet({ set }) {
+function FlashcardSet() {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const { setId } = useParams();
+  const sets = useSelector((state) => state.sets);
+  const set = sets[setId];
   const flashcards = useSelector((state) => state.flashcards);
   const [card, setCard] = useState();
-
   const array = Object.keys(flashcards).map((key) => {
     return flashcards[key];
   });
@@ -29,7 +34,12 @@ function FlashcardSet({ set }) {
   }, [array]);
 
   useEffect(() => {
-    dispatch(flashcardActions.getFlashcards(set.id));
+    dispatch(setActions.getUserFlashcardSets());
+    console.log(setId);
+    console.log(sets);
+    console.log(set);
+    dispatch(flashcardActions.getFlashcards(setId));
+    console.log(flashcards);
   }, []);
 
   const handleLeft = (e) => {
@@ -71,7 +81,7 @@ function FlashcardSet({ set }) {
   const numbers = { number: i + 1, length: array.length };
   return (
     <div className="background2">
-      <div className="title">{set.title}</div>
+      {set && <div className="title">{set.title}</div>}
       <div className="progressBar">
         <div className="fill" id="fill"></div>
       </div>
