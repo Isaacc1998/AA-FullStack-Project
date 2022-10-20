@@ -6,6 +6,7 @@ const RECEIVE_SET = "flashcardSet/receiveSet";
 const CREATE_SET = "flashcardSet/createSet";
 const DELETE_SET = "flashcardSet/deleteSet";
 const UPDATE_SET = "flashcardSet/updateSet";
+const RESET_SETS = "flashcardSet/resetSets";
 
 const receiveSets = (sets) => ({
   type: RECEIVE_SETS,
@@ -31,6 +32,10 @@ const updateSet = (set) => ({
   set,
 });
 
+const resetSets = (sets) => ({
+  type: RESET_SETS,
+  sets: null,
+});
 export const getAllFlashcardSets = () => async (dispatch) => {
   const res = await csrfFetch("/api/flashcard_sets", { method: "GET" });
   const data = await res.json();
@@ -109,6 +114,8 @@ const flashcardSetReducer = (state = {}, action) => {
     case DELETE_SET:
       delete newState[action.setId];
       return newState;
+    case RESET_SETS:
+      return {};
     default:
       return state;
   }

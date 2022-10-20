@@ -5,7 +5,12 @@ const RECEIVE_FLASHCARD = "flashcard/receiveFlashcard";
 const CREATE_FLASHCARD = "flashcard/createFlashcard";
 const DELETE_FLASHCARD = "flashcard/deleteFlashcard";
 const UPDATE_FLASHCARD = "flashcard/updateFlashcard";
+const RESET_CARDS = "flashcard/resetCards";
 
+export const resetCards = (flashcards = {}) => ({
+  type: RESET_CARDS,
+  flashcards,
+});
 const receiveFlashcards = (flashcards) => ({
   type: RECEIVE_FLASHCARDS,
   flashcards,
@@ -107,6 +112,8 @@ const flashcardReducer = (state = {}, action) => {
     case DELETE_FLASHCARD:
       delete newState[action.flashcardId];
       return newState;
+    case RESET_CARDS:
+      return {};
     default:
       return state;
   }

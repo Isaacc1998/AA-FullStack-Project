@@ -4,9 +4,11 @@ import { useHistory, useParams } from "react-router-dom";
 import * as flashcardActions from "../../store/flashcard";
 import * as setActions from "../../store/flashcardSet";
 import Flashcard from "./flashcard";
+import { resetCards } from "../../store/flashcard";
 import "./FlashcardSet.css";
 let i = 0;
 let filled = 0;
+
 // function ForceUpdate() {
 //   const [change, setChange] = useState(0);
 //   return () => setChange(change + 1);
@@ -20,12 +22,16 @@ function FlashcardSet() {
   const set = sets[setId];
   const flashcards = useSelector((state) => state.flashcards);
   const [card, setCard] = useState();
+  const [dummy, setDummy] = useState();
   const array = Object.keys(flashcards).map((key) => {
     return flashcards[key];
   });
-  // if (array.length === 0) {
-  //   ForceUpdate();
-  // }
+
+  useEffect(() => {
+    dispatch(resetCards());
+    i = 0;
+  }, []);
+
   useEffect(() => {
     setCard(array[i]);
     let progress = document.getElementById("fill");
@@ -35,11 +41,7 @@ function FlashcardSet() {
 
   useEffect(() => {
     dispatch(setActions.getUserFlashcardSets());
-    console.log(setId);
-    console.log(sets);
-    console.log(set);
     dispatch(flashcardActions.getFlashcards(setId));
-    console.log(flashcards);
   }, []);
 
   const handleLeft = (e) => {

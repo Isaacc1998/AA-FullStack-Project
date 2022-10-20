@@ -4,6 +4,7 @@ import { NavLink, Redirect, useHistory } from "react-router-dom";
 // import { NavLink, Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import * as setActions from "../../store/flashcardSet";
+import flashcardSetReducer from "../../store/flashcardSet";
 import FlashcardSet from "../FlashcardSet";
 import "./ProfilePage.css";
 
