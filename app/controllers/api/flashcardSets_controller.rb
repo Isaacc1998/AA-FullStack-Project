@@ -1,7 +1,7 @@
 class Api::FlashcardSetsController < ApplicationController
     def index 
         @sets = FlashcardSet.all()
-        render "api/flashcardSets/index"
+        render "api/flashcardSets/index2"
     end
 
     def show 

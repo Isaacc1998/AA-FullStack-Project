@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import FlashcardSet from "./components/FlashcardSet";
 import CreateSet from "./components/CreateSet";
+import Splash from "./components/Splash/splash";
 import { useSelector } from "react-redux";
 function App() {
   window.onclick = (e) => {
@@ -33,6 +34,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="/splash">
+          <Splash />
         </Route>
         <Route path="/home">
           <Home />

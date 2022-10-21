@@ -280,6 +280,17 @@
   bottom: 24px;
 }
 
+.by {
+  font-size: 14px;
+  color: rgb(91, 81, 81);
+}
+
+.creator {
+  font-size: 18px;
+  font-weight: 600;
+  color: azure;
+}
+
 .botRight {
   display: flex;
   flex-direction: column;

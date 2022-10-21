@@ -16,5 +16,6 @@ class FlashcardSet < ApplicationRecord
 
     has_many :flashcards, 
         foreign_key: :set_id,
-        class_name: :Flashcard
+        class_name: :Flashcard,
+        dependent: :destroy
 end

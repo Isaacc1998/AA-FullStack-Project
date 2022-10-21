@@ -10,9 +10,9 @@ let i = 2;
 //add functionality to prevent not logged in user from creating set (should redirect to login modal)
 function CreateSet() {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => {
-  //   return state.session.user;
-  // });
+  const sessionUser = useSelector((state) => {
+    return state.session.user;
+  });
   let sets = useSelector((state) => state.sets);
   const [title, setTitle] = useState();
   const [slots, setSlots] = useState([{ num: 1 }, { num: 2 }]);
@@ -32,6 +32,9 @@ function CreateSet() {
       setSetId(Object.keys(sets)[length - 1]);
     }
   }, [sets]);
+
+  if (!sessionUser) return <Redirect to="/login" />;
+
   const handleAdd = (e) => {
     // console.log(i);
     e.preventDefault();

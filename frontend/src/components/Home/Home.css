@@ -1,0 +1,26 @@
+@font-face {
+  font-family: hurme;
+  src: url(../../fonts/HurmeGeometricSans2-Regular.woff2) format("woff2"),
+    url(../../fonts/HurmeGeometricSans2-Regular.woff) format("woff");
+  display: swap;
+}
+* {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.background4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center, space-between;
+  align-items: center;
+  position: relative;
+  border-top-style: solid;
+  border-color: #e3bdc0;
+  overflow: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 60px;
+  height: 100%;
+  background-color: rgb(166, 126, 126);
+}
+.homeHeader {
+}

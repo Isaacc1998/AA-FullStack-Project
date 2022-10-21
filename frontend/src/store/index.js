@@ -3,10 +3,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import flashcardSetReducer from "./flashcardSet";
 import flashcardReducer from "./flashcard";
+import userReducer from "./user";
+
 const rootReducer = combineReducers({
   session: sessionReducer,
   sets: flashcardSetReducer,
   flashcards: flashcardReducer,
+  users: userReducer,
 });
 
 let enhancer;

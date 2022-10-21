@@ -40,7 +40,7 @@ function NavBar() {
       <div className="leftNav">
         <h2 id="logo">Flashlet</h2>
         <div className="home">
-          <NavLink id="home" exact to="/">
+          <NavLink id="home" to="/home">
             Home
           </NavLink>
         </div>

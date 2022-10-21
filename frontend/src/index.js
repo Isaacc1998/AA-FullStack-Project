@@ -9,6 +9,7 @@ import csrfFetch, { restoreCSRF } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import * as setActions from "./store/flashcardSet";
 import * as flashcardActions from "./store/flashcard";
+import * as userActions from "./store/user";
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
   window.setActions = setActions;
   window.flashcardActions = flashcardActions;
+  window.userActions = userActions;
 }
 
 function Root() {

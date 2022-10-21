@@ -6,6 +6,7 @@ import profileImg from "./images/defaultprofile.png";
 import getProfileImage from "./profilePics";
 import { resetSets } from "../../store/flashcardSet";
 import { resetCards } from "../../store/flashcard";
+import { removeUsers } from "../../store/user";
 import "./profile.css";
 
 function ProfileNav({ user }) {
@@ -16,6 +17,7 @@ function ProfileNav({ user }) {
     e.preventDefault();
     dispatch(resetCards());
     dispatch(resetSets());
+    dispatch(removeUsers());
     dispatch(sessionActions.logout());
   };
   const handleClick = (e) => {

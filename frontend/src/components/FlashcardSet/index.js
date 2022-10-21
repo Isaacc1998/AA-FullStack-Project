@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as flashcardActions from "../../store/flashcard";
 import * as setActions from "../../store/flashcardSet";
+import * as userActions from "../../store/user";
 import Flashcard from "./flashcard";
 import { resetCards } from "../../store/flashcard";
 import "./FlashcardSet.css";
@@ -27,8 +28,13 @@ function FlashcardSet() {
   const sets = useSelector((state) => state.sets);
   const set = sets[setId];
   const flashcards = useSelector((state) => state.flashcards);
+  const sessionUser = useSelector((state) => {
+    return state.session.user;
+  });
+  const users = useSelector((state) => state.users);
   const [card, setCard] = useState();
-  const [dummy, setDummy] = useState();
+  const [done, setDone] = useState(false);
+  const [username, setUsername] = useState();
   const array = Object.keys(flashcards).map((key) => {
     return flashcards[key];
   });
@@ -50,6 +56,16 @@ function FlashcardSet() {
     dispatch(flashcardActions.getFlashcards(setId));
   }, []);
 
+  useEffect(() => {
+    dispatch(userActions.getUser(set.authorId));
+    setUsername(users[set.authorId].user.username);
+  }, []);
+
+  useEffect(() => {
+    if (done === true) {
+      return history.push(`/users/${sessionUser.id}`);
+    }
+  }, [done]);
   const handleLeft = (e) => {
     if (i > 0) {
       setCard(array[i - 1]);
@@ -86,6 +102,13 @@ function FlashcardSet() {
     }
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setDone(true);
+    return dispatch(setActions.remove(setId));
+    // return history.push(`/users/${sessionUser.id}`);
+  };
+
   const handleDrop = (e) => {
     e.preventDefault();
     document.getElementById("delete").style.display = "block";
@@ -110,9 +133,10 @@ function FlashcardSet() {
       </div>
       <div className="bottomStuff">
         <div className="ownerInfo">
-          <div></div>
-          <div className="by">Created by</div>
-          <div className="creator"></div>
+          <div className="botLeft">
+            <div className="by">Created by</div>
+            <div className="creator">{username}</div>
+          </div>
         </div>
         <div className="botRight">
           <div className="icons">
@@ -133,7 +157,9 @@ function FlashcardSet() {
             <div className="trash">
               <MdDeleteOutline size="1.5rem" color="white"></MdDeleteOutline>
             </div>
-            <div className="deleteText">Delete</div>
+            <div className="deleteText" onClick={handleDelete}>
+              Delete
+            </div>
           </div>
         </div>
       </div>
