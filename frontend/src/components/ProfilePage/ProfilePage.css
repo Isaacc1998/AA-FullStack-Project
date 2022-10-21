@@ -9,7 +9,7 @@ html {
   border-top-style: solid;
   border-color: #e3bdc0;
   overflow: auto;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: rgb(166, 126, 126);
 }
 

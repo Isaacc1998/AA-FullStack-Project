@@ -1,13 +1,28 @@
+@font-face {
+  font-family: hurme;
+  src: url(../../fonts/HurmeGeometricSans2-Regular.woff2) format("woff2"),
+    url(../../fonts/HurmeGeometricSans2-Regular.woff) format("woff");
+  display: swap;
+}
+.outerBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-style: solid;
+  border-color: #e3bdc0;
+  height: 111vh;
+}
+
 .background2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  border-top-style: solid;
-  border-color: #e3bdc0;
+  width: 100%;
   overflow: auto;
-  height: 100vh;
+  /* height: 1000px; */
   background-color: rgb(166, 126, 126);
 }
 
@@ -16,16 +31,20 @@
   justify-content: center;
   /* justify-content: space-around; */
   width: 793px;
+  height: 75px;
+  border-bottom: solid #e3bdc0;
+  border-width: 0.75px;
 }
 
 .title {
-  position: absolute;
-  font-family: sans-serif;
+  display: flex;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 2rem;
-  font-weight: bolder;
+  font-weight: 700;
   width: 793px;
   height: 40px;
   top: 100px;
+  margin-bottom: 4%;
   color: white;
 }
 
@@ -74,6 +93,7 @@
   font-weight: bolder;
   color: white;
   width: 352.5px;
+  height: 50px;
   cursor: pointer;
   border: 0.125rem solid rgb(183, 192, 210);
   border-radius: 0.5rem;
@@ -92,6 +112,7 @@
   font-weight: bolder;
   color: white;
   width: 352.5px;
+  height: 50px;
   cursor: pointer;
   border: 0.125rem solid rgb(183, 192, 210);
   border-radius: 0.5rem;
@@ -182,4 +203,91 @@
   font-weight: 900;
   font-size: 17px;
   letter-spacing: normal;
+}
+
+.bottomStuff {
+  display: flex;
+  justify-content: space-between;
+  width: 793px;
+  padding-top: 72px;
+}
+
+.ownerInfo {
+  width: 350px;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  width: 350px;
+  color: white;
+  cursor: pointer;
+}
+
+.editCircle {
+  width: 39.74px;
+  height: 39.74px;
+  padding-top: 3.5px;
+}
+
+.layered {
+  display: grid;
+}
+
+.layered > .editCircle {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.pencil {
+  position: relative;
+  bottom: 34px;
+  left: 10px;
+  z-index: 10;
+}
+
+#delete {
+  display: none;
+  width: 150px;
+  height: 45px;
+  border-radius: 0.5rem;
+  background-color: rgb(166, 126, 126);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 11;
+}
+
+#delete:hover {
+  background-color: rgb(199, 153, 153);
+}
+
+.trash {
+  padding-top: 11px;
+  width: 30px;
+  margin-left: 12%;
+  /* margin-right: 1%; */
+}
+
+.deleteText {
+  position: relative;
+  text-align: center;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  width: 75px;
+  color: rgb(234, 219, 219);
+  font-size: 15px;
+  left: 36px;
+  bottom: 24px;
+}
+
+.botRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.addTo:hover,
+.editCircle:hover,
+.more:hover {
+  opacity: 0.3;
 }

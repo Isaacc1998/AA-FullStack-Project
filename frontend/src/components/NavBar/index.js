@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { NavLink } from "react-router-dom";
 import ProfileNav from "./profileNav";
+import { HiChevronDown } from "react-icons/hi";
+import { HiMagnifyingGlass } from "react-icons/hi2";
 import "./NavBar.css";
 //edit
 
@@ -43,9 +45,10 @@ function NavBar() {
           </NavLink>
         </div>
         <div className="dropdown">
-          <button onClick={handleClick} className="create">
+          <div onClick={handleClick} className="create">
             Create
-          </button>
+            <HiChevronDown className="down" size="1.5rem"></HiChevronDown>
+          </div>
           <div id="createMenu" className="menu-dropdown">
             <NavLink id="studyset" className="nav" exact to="/createSet">
               Study set
@@ -60,6 +63,14 @@ function NavBar() {
         </div>
       </div>
       <div className="rightNav">
+        <div className="searchContainer"></div>
+        <div className="glass">
+          <HiMagnifyingGlass
+            size="1.5rem"
+            color="white"
+            fontWeight="900"
+          ></HiMagnifyingGlass>
+        </div>
         <input
           className="search"
           type="text"

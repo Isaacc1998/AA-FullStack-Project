@@ -18,6 +18,14 @@ function App() {
       let dropdown = document.getElementById("dropdownProfile");
       dropdown.style.display = "none";
     }
+    if (!e.target.matches(".delete") && !e.target.matches(".more")) {
+      let deleteSet = document.getElementById("delete");
+      deleteSet.style.display = "none";
+    }
+    // if (!e.target.matches(".delete") && !e.target.matches(".more")) {
+    //   let deleteSet = document.getElementById("delete");
+    //   deleteSet.style.display = "none";
+    // }
   };
   return (
     <div>

@@ -1,3 +1,12 @@
+@font-face {
+  font-family: hurme;
+  src: url(../../fonts/HurmeGeometricSans2-Regular.woff2) format("woff2"),
+    url(../../fonts/HurmeGeometricSans2-Regular.woff) format("woff");
+  display: swap;
+}
+* {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,7 +30,6 @@ h2 {
 }
 
 .home {
-  font-family: sans-serif;
   font-size: medium;
   font-weight: bold;
 }
@@ -41,10 +49,11 @@ h2 {
 }
 
 .leftNav {
+  padding-left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: 350px;
 }
 
 .rightNav {
@@ -65,12 +74,12 @@ h2 {
   background-color: pink;
   border-radius: 4px;
   border: none;
-  min-width: 70px;
-  min-height: 30px;
-  font-family: sans-serif;
-  font-size: medium;
-  font-weight: bold;
+  width: 96px;
+  height: 32px;
+  font-size: 14px;
+  font-weight: 700;
   color: white;
+  padding-left: 10px;
 }
 
 input {
@@ -83,7 +92,6 @@ input {
 }
 
 #login {
-  font-family: sans-serif;
   font-size: medium;
   font-weight: bold;
   color: white;
@@ -91,7 +99,6 @@ input {
 }
 
 #signup {
-  font-family: sans-serif;
   font-size: medium;
   font-weight: bold;
   color: white;
@@ -110,12 +117,23 @@ input {
 
 .dropdown {
   position: relative;
-  display: inline-block;
   cursor: pointer;
 }
 
 .create {
+  padding-top: 8px;
+  padding-left: 12px;
   cursor: pointer;
+}
+
+.create:hover {
+  background-color: rgb(238, 173, 184);
+}
+
+.down {
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }
 
 /* .create:hover .create:focus {
@@ -131,23 +149,39 @@ input {
 }
 
 .menu-dropdown .nav {
-  color: grey;
+  color: white;
   padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
   display: block;
   text-decoration: none;
 }
 
 .menu-dropdown .nav:hover {
-  background-color: #d3d3d3;
+  background-color: rgb(248, 220, 224);
 }
 
+.searchContainer {
+  position: relative;
+}
+.glass {
+  position: absolute;
+  height: 34.5px;
+  width: 32px;
+  background-color: #e3bdc0;
+  border-radius: 0.5rem;
+  padding-top: 5px;
+  padding-left: 10px;
+}
 .search {
   font-family: hurme_no2-webfont, -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   color: white;
-  width: 197.5px;
+  width: 250px;
   height: 34.5px;
+  padding-right: 0px;
+  padding-left: 45px;
   margin-right: 4%;
   background-color: #e3bdc0;
 }
