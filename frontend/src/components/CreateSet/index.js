@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as flashcardActions from "../../store/flashcard";
 import * as setActions from "../../store/flashcardSet";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import NewCard from "./newCard";
 import { Redirect } from "react-router-dom";
 import "./CreateSet.css";
 let i = 2;
 //add functionality to prevent not logged in user from creating set (should redirect to login modal)
 function CreateSet() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => {
     return state.session.user;
@@ -20,6 +21,9 @@ function CreateSet() {
 
   // useEffect(() => {}, [slots.length]);
   useEffect(() => {
+    if (i > 2) {
+      i = 2;
+    }
     if (Object.keys(sets).length > 0) {
       sets = {};
     }
@@ -28,7 +32,7 @@ function CreateSet() {
   useEffect(() => {
     let length = Object.keys(sets).length;
     if (length > 0) {
-      console.log(Object.keys(sets)[length - 1]);
+      // console.log(Object.keys(sets)[length - 1]);
       setSetId(Object.keys(sets)[length - 1]);
     }
   }, [sets]);
@@ -51,7 +55,12 @@ function CreateSet() {
     // setSetId(set_id);
   };
 
-  console.log(slots);
+  // console.log(slots);
+  if (setId) {
+    setTimeout(() => {
+      return history.push("home");
+    });
+  }
 
   return (
     <div className="background3">

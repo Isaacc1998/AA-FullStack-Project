@@ -3,6 +3,7 @@
 }
 
 .title {
+  color: aliceblue;
   text-align: left;
   width: 500px;
 }
@@ -29,6 +30,8 @@
 }
 
 .text {
+  text-align: center;
+  color: aliceblue;
   display: inline;
   width: 500px;
 }

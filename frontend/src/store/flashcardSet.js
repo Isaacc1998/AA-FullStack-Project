@@ -8,9 +8,8 @@ const DELETE_SET = "flashcardSet/deleteSet";
 const UPDATE_SET = "flashcardSet/updateSet";
 const RESET_SETS = "flashcardSet/resetSets";
 
-export const resetSets = (sets = {}) => ({
+export const resetSets = () => ({
   type: RESET_SETS,
-  sets,
 });
 
 const receiveSets = (sets) => ({
@@ -82,13 +81,14 @@ export const remove = (setId) => async (dispatch) => {
 };
 
 export const update = (set) => async (dispatch) => {
-  const { title } = set;
+  const { title, setId } = set;
 
-  const res = await csrfFetch(`/api/flashcard_sets/${set.id}`, {
+  const res = await csrfFetch(`/api/flashcard_sets/${setId}`, {
     method: "PUT",
     body: JSON.stringify({ title }),
   });
   const data = await res.json();
+  console.log(data);
   dispatch(updateSet(data));
 };
 

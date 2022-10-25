@@ -4,6 +4,7 @@ import { NavLink, Redirect, useHistory } from "react-router-dom";
 // import { NavLink, Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import * as setActions from "../../store/flashcardSet";
+import { resetSets } from "../../store/flashcardSet";
 import flashcardSetReducer from "../../store/flashcardSet";
 import FlashcardSet from "../FlashcardSet";
 import "./ProfilePage.css";
@@ -12,12 +13,13 @@ function ProfilePage() {
   let history = useHistory();
   const dispatch = useDispatch();
   const sets = useSelector((state) => state.sets);
-  const [set, setSet] = useState(-1);
+  const [set, setSet] = useState();
 
   useEffect(() => {
+    dispatch(resetSets());
+
     dispatch(setActions.getUserFlashcardSets());
   }, []);
-
   // if (set !== -1) {
   //   //how to call this in the App while passing in params?
   //   // return <FlashcardSet set={set}></FlashcardSet>;

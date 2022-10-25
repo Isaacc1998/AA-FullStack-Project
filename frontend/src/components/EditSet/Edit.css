@@ -1,0 +1,6 @@
+.preCards {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  margin-top: 5%;
+}

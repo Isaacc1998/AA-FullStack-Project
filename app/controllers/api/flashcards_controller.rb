@@ -22,15 +22,15 @@ class Api::FlashcardsController < ApplicationController
 
     def update 
         @flashcard = Flashcard.find_by(id: params[:id])
-        if @flashcard.set_id == params[:set_id]
-            if @flashcard.update(flashcard_set_params)
+        # if @flashcard.set_id == params[:set_id]
+            if @flashcard.update(flashcard_params)
                 render "api/flashcards/show"
             else  
                 render json: { errors: @user.errors.full_messages}, status: :unprocessable_entity
             end
-        else  
-            render json: { errors: ['You can only update your own flashcards!']}
-        end
+        # else  
+        #     render json: { errors: ['You can only update your own flashcards!']}
+        # end
     end
 
     def destroy

@@ -55,10 +55,14 @@ function FlashcardSet() {
     dispatch(setActions.getUserFlashcardSets());
     dispatch(flashcardActions.getFlashcards(setId));
   }, []);
-
+  // console.log(sets);
+  // console.log(set);
   useEffect(() => {
-    dispatch(userActions.getUser(set.authorId));
-    setUsername(users[set.authorId].user.username);
+    console.log(set);
+    setTimeout(() => {
+      dispatch(userActions.getUser(set.authorId));
+      setUsername(users[set.authorId].user.username);
+    }, 10);
   }, []);
 
   useEffect(() => {
@@ -66,6 +70,16 @@ function FlashcardSet() {
       return history.push(`/users/${sessionUser.id}`);
     }
   }, [done]);
+
+  useEffect(() => {
+    if (username !== sessionUser.username && username) {
+      console.log(username);
+      console.log(sessionUser.username);
+      document.getElementById("more").style.display = "none";
+      document.getElementById("editCircle").style.display = "none";
+    }
+  }, [username]);
+
   const handleLeft = (e) => {
     if (i > 0) {
       setCard(array[i - 1]);
@@ -100,6 +114,11 @@ function FlashcardSet() {
         card.classList.toggle("slideRight");
       }, 310);
     }
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    return history.push(`/editSet/${setId}`);
   };
 
   const handleDelete = (e) => {
@@ -143,13 +162,13 @@ function FlashcardSet() {
             <div className="addTo">
               <CiCirclePlus size="3rem" />
             </div>
-            <div className="editCircle">
+            <div className="editCircle" id="editCircle" onClick={handleEdit}>
               <BsCircle size="2.5rem"></BsCircle>
               <div className="pencil">
                 <HiOutlinePencil size="1.3rem" />
               </div>
             </div>
-            <div onClick={handleDrop} className="more">
+            <div onClick={handleDrop} className="more" id="more">
               <CiCircleMore className="more" size="3rem" />
             </div>
           </div>

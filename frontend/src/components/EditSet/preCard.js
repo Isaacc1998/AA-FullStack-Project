@@ -2,32 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as flashcardActions from "../../store/flashcard";
 
-import "./CreateSet.css";
+import "./Edit.css";
 
-function NewCard({ setId, num, submit }) {
+function PreCard({ id, setId, num, preTerm, preDefinition, submit }) {
   const dispatch = useDispatch();
   const [term, setTerm] = useState();
   const [definition, setDefinition] = useState();
-  // console.log(setId);
+
   useEffect(() => {
-    if (setId) {
+    setTerm(preTerm);
+    setDefinition(preDefinition);
+  }, []);
+
+  useEffect(() => {
+    if (submit === true) {
       dispatch(
-        flashcardActions.create({
+        flashcardActions.update({
+          id: id,
           front: term,
           back: definition,
           set_id: setId,
         })
       );
-    }
-  }, [setId]);
-
-  useEffect(() => {
-    if (submit === true) {
-      flashcardActions.create({
-        front: term,
-        back: definition,
-        set_id: setId,
-      });
     }
   }, [submit]);
   return (
@@ -38,7 +34,7 @@ function NewCard({ setId, num, submit }) {
           <input
             className="termInput"
             type="text"
-            placeholder="Enter Term"
+            value={term}
             onChange={(e) => setTerm(e.target.value)}
           />
           <div className="termBorder"></div>
@@ -48,7 +44,7 @@ function NewCard({ setId, num, submit }) {
           <input
             className="defInput"
             type="text"
-            placeholder="Enter Definition"
+            value={definition}
             onChange={(e) => setDefinition(e.target.value)}
           />
           <div className="termBorder"></div>
@@ -59,4 +55,4 @@ function NewCard({ setId, num, submit }) {
   );
 }
 
-export default NewCard;
+export default PreCard;

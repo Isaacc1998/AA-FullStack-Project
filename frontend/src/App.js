@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import FlashcardSet from "./components/FlashcardSet";
 import CreateSet from "./components/CreateSet";
+import EditSet from "./components/EditSet";
 import Splash from "./components/Splash/splash";
 import { useSelector } from "react-redux";
 function App() {
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path="/createSet">
           <CreateSet />
+        </Route>
+        <Route path="/editSet/:setId">
+          <EditSet />
         </Route>
         <Route path="/createFolder"></Route>
         <Route path="/search"></Route>

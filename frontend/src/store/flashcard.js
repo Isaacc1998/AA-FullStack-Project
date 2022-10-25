@@ -48,7 +48,7 @@ export const getFlashcards = (setId) => async (dispatch) => {
 export const getFlashcard = (params) => async (dispatch) => {
   const { flashcardId, setId } = params;
   const res = await csrfFetch(
-    `api/flashcard_sets/${setId}/flashcards/${flashcardId}`
+    `/api/flashcard_sets/${setId}/flashcards/${flashcardId}`
   );
   const data = await res.json();
   dispatch(receiveFlashcard(data));
@@ -69,18 +69,21 @@ export const create = (flashcard) => async (dispatch) => {
 };
 
 export const update = (flashcard) => async (dispatch) => {
-  const { front, back, set_id } = flashcard;
+  const { id, front, back, set_id } = flashcard;
   const res = await csrfFetch(
-    `api/flashcard_sets/${set_id}/flashcards/${flashcard.id}`,
+    `/api/flashcard_sets/${set_id}/flashcards/${id}`,
     {
       method: "PUT",
       body: JSON.stringify({
         front,
         back,
+        set_id,
       }),
     }
   );
   const data = await res.json();
+  console.log(data);
+
   dispatch(updateFlashcard(data));
 };
 

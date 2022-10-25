@@ -15,8 +15,8 @@ function ProfileNav({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(resetCards());
     dispatch(resetSets());
+    dispatch(resetCards());
     dispatch(removeUsers());
     dispatch(sessionActions.logout());
   };
@@ -56,7 +56,7 @@ function ProfileNav({ user }) {
             </NavLink>
           </div>
           <div onClick={logout}>
-            <NavLink to="/" id="logoutNav" className="nav">
+            <NavLink to="/splash" id="logoutNav" className="nav">
               Logout
             </NavLink>
           </div>

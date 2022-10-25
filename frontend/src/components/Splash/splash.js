@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 function Splash() {
-  return <div></div>;
+  const history = useHistory();
+  useEffect(() => {
+    return history.push("/login");
+  }, []);
+  return <div>Splash</div>;
 }
 
 export default Splash;

@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as setActions from "../../store/flashcardSet";
 import * as userActions from "../../store/user";
 import "./Home.css";
 
 function SetDisplay({ set }) {
-  //   console.log(set);
+  const history = useHistory();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const [username, setUsername] = useState();
-  //   console.log(users);
 
   useEffect(() => {
+    // if () {
+
+    // }
     dispatch(userActions.getUser(set.authorId));
-    if (Object.keys(users).includes(set.authorId)) {
-      setUsername(users[set.authorId].username);
-    }
+    setTimeout(() => {
+      setUsername(users[set.authorId].user.username);
+    }, 100);
   }, []);
-  //   console.log(users);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    return history.push(`/flashcardSet/${set.id}`);
+  };
+
+  // console.log(username);
+
   return (
-    <div className="preview">
+    <div className="preview" onClick={handleClick}>
       <div className="previewTitle">{set.title}</div>
-      <div className="previewNum">{set.length}</div>
+      <div className="previewNum">{set.length} Terms</div>
       <div className="previewAuthor">{username}</div>
     </div>
   );

@@ -4,6 +4,7 @@ import * as setActions from "../../store/flashcardSet";
 import { Redirect } from "react-router-dom";
 import SetDisplay from "./setDisplay";
 import "./Home.css";
+
 let array = [];
 function Home() {
   const dispatch = useDispatch();
@@ -38,47 +39,53 @@ function Home() {
       }
     }
   }, [sets]);
-  if (!sessionUser) return <Redirect to="/login" />;
+  if (!sessionUser) return <Redirect to="/splash" />;
 
   // console.log(sets);
   return (
     <div className="background4">
       <h3 className="homeHeader">Flashcard Sets</h3>
-      <div className="rows">
-        {array &&
-          array.map((set) => (
-            <React.Fragment key={set.id}>
-              <SetDisplay set={set}></SetDisplay>
-            </React.Fragment>
-          ))}
+
+      <div className="flexContainer">
+        <div className="rows">
+          {array &&
+            array.slice(0, 4).map((set) => (
+              <React.Fragment key={set.id}>
+                <SetDisplay set={set}></SetDisplay>
+              </React.Fragment>
+            ))}
+        </div>
+        <div className="rows">
+          {array &&
+            array.slice(4, 8).map((set) => {
+              return (
+                <div className="setComponent">
+                  <SetDisplay set={set}></SetDisplay>
+                </div>
+              );
+            })}
+        </div>
+        <div className="rows">
+          {array &&
+            array.slice(8, 12).map((set) => {
+              return (
+                <div className="setComponent">
+                  <SetDisplay set={set}></SetDisplay>
+                </div>
+              );
+            })}
+        </div>
+        {/* <div className="rows">
+          {array &&
+            array.slice(9, 12).map((set) => {
+              return (
+                <div className="setComponent">
+                  <SetDisplay set={set}></SetDisplay>;
+                </div>
+              );
+            })}
+        </div> */}
       </div>
-      {/* <div className="rows">
-        {arr.slice(3, 5).map((set) => {
-          return (
-            <div className="setComponent">
-              <SetDisplay set={set}></SetDisplay>;
-            </div>
-          );
-        })}
-      </div>
-      <div className="rows">
-        {arr.slice(6, 8).map((set) => {
-          return (
-            <div className="setComponent">
-              <SetDisplay set={set}></SetDisplay>;
-            </div>
-          );
-        })}
-      </div>
-      <div className="rows">
-        {arr.slice(9, 11).map((set) => {
-          return (
-            <div className="setComponent">
-              <SetDisplay set={set}></SetDisplay>;
-            </div>
-          );
-        })}
-      </div> */}
     </div>
   );
 }
