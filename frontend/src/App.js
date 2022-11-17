@@ -9,6 +9,7 @@ import FlashcardSet from "./components/FlashcardSet";
 import CreateSet from "./components/CreateSet";
 import EditSet from "./components/EditSet";
 import Splash from "./components/Splash/splash";
+import Search from "./components/Search";
 import { useSelector } from "react-redux";
 function App() {
   window.onclick = (e) => {
@@ -58,7 +59,9 @@ function App() {
           <EditSet />
         </Route>
         <Route path="/createFolder"></Route>
-        <Route path="/search"></Route>
+        <Route path="/search">
+          <Search />
+        </Route>
         <Route path="/users/:userId">
           <ProfilePage />
         </Route>

@@ -162,7 +162,42 @@ input {
 }
 
 .searchContainer {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /* position: absolute; */
+}
+
+.searchList {
+  display: none;
+  position: absolute;
+  border-radius: 0.3rem;
+  background-color: #87696b;
+  top: 48px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.searchTerm {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 250px;
+  font-size: 14px;
+  font-weight: 400;
+  color: aliceblue;
+  padding-left: 10px;
+  text-decoration: none;
+}
+.searchTerm:hover {
+  background-color: #b49e9f;
+}
+.searchText {
+  font-size: 14px;
+  font-weight: 400;
+  color: aliceblue;
+  padding-left: 10px;
+  text-decoration: none;
 }
 .glass {
   position: absolute;

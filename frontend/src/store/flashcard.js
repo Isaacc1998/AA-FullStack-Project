@@ -70,6 +70,7 @@ export const create = (flashcard) => async (dispatch) => {
 
 export const update = (flashcard) => async (dispatch) => {
   const { id, front, back, set_id } = flashcard;
+  console.log(back, "this is back");
   const res = await csrfFetch(
     `/api/flashcard_sets/${set_id}/flashcards/${id}`,
     {

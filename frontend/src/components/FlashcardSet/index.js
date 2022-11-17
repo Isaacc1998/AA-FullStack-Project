@@ -154,7 +154,7 @@ function FlashcardSet() {
         <div className="ownerInfo">
           <div className="botLeft">
             <div className="by">Created by</div>
-            <div className="creator">{username}</div>
+            <div className="creator">{set && set.name}</div>
           </div>
         </div>
         <div className="botRight">

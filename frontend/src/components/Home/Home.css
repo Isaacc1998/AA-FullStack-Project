@@ -13,6 +13,8 @@
   justify-content: space-around;
   align-items: center;
   height: 800px;
+  border-top-style: solid;
+  border-color: #e3bdc0;
 }
 .homeHeader {
   position: relative;

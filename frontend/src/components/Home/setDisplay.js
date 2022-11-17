@@ -32,7 +32,7 @@ function SetDisplay({ set }) {
     <div className="preview" onClick={handleClick}>
       <div className="previewTitle">{set.title}</div>
       <div className="previewNum">{set.length} Terms</div>
-      <div className="previewAuthor">{username}</div>
+      <div className="previewAuthor">{set.name}</div>
     </div>
   );
 }

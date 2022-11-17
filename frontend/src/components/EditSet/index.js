@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import * as flashcardActions from "../../store/flashcard";
 import * as setActions from "../../store/flashcardSet";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import NewCard from "../CreateSet/newCard";
+import NewCard from "./newCard";
 import PreCard from "./preCard";
 import { Redirect } from "react-router-dom";
 import "./Edit.css";
 let i = 0;
 
 function EditSet() {
-  //   const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { setId } = useParams();
   const sessionUser = useSelector((state) => {
@@ -21,6 +21,8 @@ function EditSet() {
   const [title, setTitle] = useState();
   const [slots, setSlots] = useState([]);
   const [submit, setSubmit] = useState(false);
+  const [value, setValue] = useState();
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     if (i > 0) {
@@ -40,6 +42,13 @@ function EditSet() {
   useEffect(() => {
     dispatch(flashcardActions.getFlashcards(setId));
   }, []);
+
+  useEffect(() => {
+    if (done === true) {
+      dispatch(setActions.update({ title, setId }));
+      return history.push(`/flashcardSet/${setId}`);
+    }
+  }, [done]);
 
   useEffect(() => {
     let temp = [];
@@ -82,13 +91,14 @@ function EditSet() {
   //   }
   return (
     <div className="background3">
-      <h2 className="createNew">Create a new study set</h2>
+      <h2 className="createNew">Edit study set</h2>
       <div className="createForm">
         <div className="addTitle">
           <span className="titleHead">Title</span>
           <input
             className="titleText"
             type="text"
+            value={value}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -109,7 +119,8 @@ function EditSet() {
                   num={idx + 1}
                   preTerm={cards[card].front}
                   preDefinition={cards[card].back}
-                  submit={submit}
+                  submit={done}
+                  setSubmit={setDone}
                 ></PreCard>
               </React.Fragment>
             );
@@ -118,7 +129,7 @@ function EditSet() {
       <div className="addCards">
         {slots.map((card) => (
           <React.Fragment key={card.num}>
-            <NewCard setId={setId} num={card.num}></NewCard>
+            <NewCard setId={setId} num={card.num} submit={done}></NewCard>
           </React.Fragment>
         ))}
       </div>
@@ -126,9 +137,16 @@ function EditSet() {
         <div className="num2">{i + 1}</div>
         <div className="add">ADD CARD</div>
       </div>
-      <button type="button" onClick={handleUpdate} id="submitSet">
+      <div
+        onClick={(e) => {
+          // e.preventDefault();
+          // console.log("clicked");
+          setDone(true);
+        }}
+        id="submitSet"
+      >
         Done
-      </button>
+      </div>
     </div>
   );
 }

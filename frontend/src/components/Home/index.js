@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 import SetDisplay from "./setDisplay";
 import "./Home.css";
 
-let array = [];
 function Home() {
   const dispatch = useDispatch();
   const sets = useSelector((state) => {
@@ -15,7 +14,8 @@ function Home() {
     return state.session.user;
   });
   // const [filled, setFilled] = useState(false);
-  const [arr, setArr] = useState([]);
+  const [array, setArray] = useState([]);
+  const [rows, setRows] = useState();
 
   useEffect(() => {
     dispatch(setActions.getAllFlashcardSets());
@@ -23,37 +23,30 @@ function Home() {
 
   useEffect(() => {
     let maxLength = Object.keys(sets).length;
-    // let length;
-    // if (Object.keys(sets).length < 12) {
-    //   length = Object.keys(sets).length;
-    // } else {
-    //   length = 12;
-    // }
+
     if (Object.values(sets).length > 12) {
+      let temp = [];
       for (let i = 0; i < 12; i++) {
-        let temp = [];
-        array.push(Object.values(sets)[Math.floor(Math.random() * maxLength)]);
-        // setArr(temp);
-        // console.log(Object.values(sets)[Math.floor(Math.random() * maxLength)]);
-        // console.log(arr);
+        temp.push(Object.values(sets)[Math.floor(Math.random() * maxLength)]);
       }
+      setArray(temp);
     }
   }, [sets]);
   if (!sessionUser) return <Redirect to="/splash" />;
 
-  // console.log(sets);
   return (
     <div className="background4">
       <h3 className="homeHeader">Flashcard Sets</h3>
-
       <div className="flexContainer">
         <div className="rows">
           {array &&
-            array.slice(0, 4).map((set) => (
-              <React.Fragment key={set.id}>
-                <SetDisplay set={set}></SetDisplay>
-              </React.Fragment>
-            ))}
+            array.slice(0, 4).map((set) => {
+              return (
+                <div className="setComponent">
+                  <SetDisplay set={set}></SetDisplay>
+                </div>
+              );
+            })}
         </div>
         <div className="rows">
           {array &&
@@ -75,16 +68,6 @@ function Home() {
               );
             })}
         </div>
-        {/* <div className="rows">
-          {array &&
-            array.slice(9, 12).map((set) => {
-              return (
-                <div className="setComponent">
-                  <SetDisplay set={set}></SetDisplay>;
-                </div>
-              );
-            })}
-        </div> */}
       </div>
     </div>
   );

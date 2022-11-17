@@ -7,5 +7,6 @@
         json.created_at set.created_at 
         json.updated_at set.updated_at
         json.length set.flashcards.length
+        json.name (User.select(:username).where("id = ?", set.author_id))[0].username
     end
 end
