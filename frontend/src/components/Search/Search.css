@@ -110,8 +110,14 @@
   height: 170px;
   padding: 16px;
   border-radius: 0.5rem;
+  border-bottom: 0.25rem solid rgba(255, 255, 255, 0);
   background-color: #e3bdc0;
   cursor: pointer;
+}
+
+.searchSetDisplay:hover {
+  transition-duration: 400ms;
+  border-bottom: 8px solid rgb(241, 238, 241);
 }
 
 .searchSetTitle {

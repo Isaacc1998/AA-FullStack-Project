@@ -46,7 +46,13 @@
   height: 156px;
   background-color: #e3bdc0;
   border-radius: 0.4rem;
+  border-bottom: 0.25rem solid rgba(255, 255, 255, 0);
   padding: 25px;
+}
+
+.preview:hover {
+  transition-duration: 400ms;
+  border-bottom: 8px solid rgb(241, 238, 241);
 }
 
 .previewTitle {

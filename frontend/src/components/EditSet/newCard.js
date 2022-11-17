@@ -29,7 +29,7 @@ function NewCard({ setId, num, submit }) {
           back: definition,
           set_id: setId,
         })
-      )``;
+      );
     }
   }, [submit]);
   return (

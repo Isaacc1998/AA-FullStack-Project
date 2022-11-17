@@ -112,6 +112,7 @@ const flashcardReducer = (state = {}, action) => {
       return { ...newState, ...action.flashcard };
     case UPDATE_FLASHCARD:
       newState[action.flashcard.flashcards.id] = action.set;
+      // newState[action.flashcard.id] = action.set;
       return newState;
     case DELETE_FLASHCARD:
       delete newState[action.flashcardId];

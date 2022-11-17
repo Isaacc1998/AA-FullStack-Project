@@ -18,7 +18,12 @@ function EditSet() {
   });
   let sets = useSelector((state) => state.sets);
   let cards = useSelector((state) => state.flashcards);
-  const [title, setTitle] = useState();
+  let temp;
+  if (sets[setId]) {
+    temp = sets[setId].title;
+  }
+  const [title, setTitle] = useState(temp);
+
   const [slots, setSlots] = useState([]);
   const [submit, setSubmit] = useState(false);
   const [value, setValue] = useState();
@@ -42,6 +47,10 @@ function EditSet() {
   useEffect(() => {
     dispatch(flashcardActions.getFlashcards(setId));
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(setActions.getFlashcardSet(setId));
+  // }, []);
 
   useEffect(() => {
     if (done === true) {
@@ -98,7 +107,7 @@ function EditSet() {
           <input
             className="titleText"
             type="text"
-            value={value}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>

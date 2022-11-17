@@ -4,3 +4,23 @@
   align-content: space-around;
   margin-top: 5%;
 }
+
+#submitSet {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  width: 115px;
+  height: 64px;
+  background-color: #fc99a1;
+  color: white;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  left: 552px;
+  cursor: pointer;
+}

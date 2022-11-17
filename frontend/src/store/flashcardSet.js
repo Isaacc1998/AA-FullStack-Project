@@ -110,7 +110,8 @@ const flashcardSetReducer = (state = {}, action) => {
     case CREATE_SET:
       return { ...newState, ...action.set };
     case UPDATE_SET:
-      newState[action.set.flashcardSets.id] = action.set;
+      // newState[action.set.flashcardSets.id] = action.set;
+      newState[action.set.setId] = action.set;
       return newState;
     case DELETE_SET:
       delete newState[action.setId];

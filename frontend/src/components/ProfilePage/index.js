@@ -36,6 +36,8 @@ function ProfilePage() {
   return (
     <div className="background">
       <div className="setsContainer">
+        <div className="profileHeader">Study sets</div>
+
         {/* <div className="searchSets">
           <input
             className="search"
