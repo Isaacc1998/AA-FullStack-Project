@@ -20,7 +20,7 @@ function NewCard({ setId, num, submit }) {
   //       );
   //     }
   //   }, [setId]);
-
+  //
   useEffect(() => {
     if (submit === true) {
       dispatch(
