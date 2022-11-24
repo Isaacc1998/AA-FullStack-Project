@@ -18,8 +18,19 @@ function CreateSet() {
   const [title, setTitle] = useState();
   const [slots, setSlots] = useState([{ num: 1 }, { num: 2 }]);
   const [setId, setSetId] = useState();
-
+  const [cardNum, setCardNum] = useState();
+  const [deleteCard, setDeleteCard] = useState(0);
   // useEffect(() => {}, [slots.length]);
+  useEffect(() => {
+    let temp = [...slots];
+    temp.splice(cardNum - 1, 1);
+    // for (let j = 0; j < temp.length; j++) {
+    //   temp[j].num = j + 1;
+    // }
+    setSlots(temp);
+    i = temp.length;
+  }, [deleteCard]);
+
   useEffect(() => {
     if (i > 2) {
       i = 2;
@@ -81,14 +92,24 @@ function CreateSet() {
         ></textarea>
       </div>
       <div className="addCards">
-        {slots.map((card) => (
-          <React.Fragment key={card.num}>
-            <NewCard setId={setId} num={card.num}></NewCard>
-          </React.Fragment>
-        ))}
+        {slots.map((card, index) => {
+          return (
+            <React.Fragment key={card.num}>
+              <NewCard
+                setId={setId}
+                num={index + 1}
+                slots={slots}
+                setSlots={setSlots}
+                setCardNum={setCardNum}
+                deleteCard={deleteCard}
+                setDeleteCard={setDeleteCard}
+              ></NewCard>
+            </React.Fragment>
+          );
+        })}
       </div>
       <div className="addSlot" onClick={handleAdd}>
-        <div className="num2">{i + 1}</div>
+        <div className="num2">{slots.length + 1}</div>
         <div className="add">ADD CARD</div>
       </div>
       <button type="button" onClick={handleCreate} id="submitSet">

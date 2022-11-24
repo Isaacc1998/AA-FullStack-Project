@@ -30,7 +30,12 @@ function Flashcard({ flashcard }) {
           <div className="tracker">
             {flashcard.number + " / " + flashcard.length}
           </div>
-          {flashcard && <div className="body">{flashcard.back}</div>}
+          {flashcard && (
+            <div className="body">
+              {flashcard.back}
+              <img src={flashcard.photoURL} alt="" />
+            </div>
+          )}
         </div>
       </div>
     </div>

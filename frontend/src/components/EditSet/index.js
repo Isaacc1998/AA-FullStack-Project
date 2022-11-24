@@ -28,6 +28,32 @@ function EditSet() {
   const [submit, setSubmit] = useState(false);
   const [value, setValue] = useState();
   const [done, setDone] = useState(false);
+  //actual card number displayed on card
+  const [cardNum, setCardNum] = useState();
+  //acts as counter just for useEffect
+  const [deleteCard, setDeleteCard] = useState(0);
+  //setting the id of preCard to be deleted
+  const [deletePreCard, setDeletePreCard] = useState();
+  const [deleteList, setDeleteList] = useState([]);
+
+  useEffect(() => {
+    let temp = [...slots];
+    temp.splice(cardNum - 1, 1);
+    setSlots(temp);
+    i = temp.length;
+  }, [deleteCard]);
+
+  useEffect(() => {
+    dispatch(
+      flashcardActions.removeState({
+        flashcardId: deletePreCard,
+        set_id: setId,
+      })
+    );
+    let temp = [...deleteList];
+    temp.push(deletePreCard);
+    setDeleteList(temp);
+  }, [deletePreCard]);
 
   useEffect(() => {
     if (i > 0) {
@@ -54,6 +80,11 @@ function EditSet() {
 
   useEffect(() => {
     if (done === true) {
+      for (let j = 0; j < deleteList.length; j++) {
+        dispatch(
+          flashcardActions.remove({ flashcardId: deleteList[j], set_id: setId })
+        );
+      }
       dispatch(setActions.update({ title, setId }));
       return history.push(`/flashcardSet/${setId}`);
     }
@@ -121,7 +152,7 @@ function EditSet() {
         {cards &&
           Object.keys(cards).map((card, idx) => {
             return (
-              <React.Fragment key={idx + 1}>
+              <React.Fragment key={cards[card].id}>
                 <PreCard
                   id={cards[card].id}
                   setId={setId}
@@ -130,20 +161,31 @@ function EditSet() {
                   preDefinition={cards[card].back}
                   submit={done}
                   setSubmit={setDone}
+                  setDeletePreCard={setDeletePreCard}
                 ></PreCard>
               </React.Fragment>
             );
           })}
       </div>
       <div className="addCards">
-        {slots.map((card) => (
+        {slots.map((card, index) => (
           <React.Fragment key={card.num}>
-            <NewCard setId={setId} num={card.num} submit={done}></NewCard>
+            <NewCard
+              setId={setId}
+              num={index + 1 + Object.keys(cards).length}
+              submit={done}
+              cardNum={index + 1}
+              setCardNum={setCardNum}
+              deleteCard={deleteCard}
+              setDeleteCard={setDeleteCard}
+            ></NewCard>
           </React.Fragment>
         ))}
       </div>
       <div className="addSlot" onClick={handleAdd}>
-        <div className="num2">{i + 1}</div>
+        <div className="num2">
+          {slots.length + 1 + Object.keys(cards).length}
+        </div>
         <div className="add">ADD CARD</div>
       </div>
       <div

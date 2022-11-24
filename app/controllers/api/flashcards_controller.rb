@@ -34,7 +34,8 @@ class Api::FlashcardsController < ApplicationController
     end
 
     def destroy
-
+        @flashcard = Flashcard.find_by(id: params[:id])
+        @flashcard.destroy
     end
 
     private 

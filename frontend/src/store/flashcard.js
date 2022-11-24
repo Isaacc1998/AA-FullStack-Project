@@ -71,24 +71,37 @@ export const create = (params) => async (dispatch) => {
   // return data;
 };
 
-export const update = (flashcard) => async (dispatch) => {
-  const { id, front, back, set_id } = flashcard;
-  console.log(back, "this is back");
+export const update = (params) => async (dispatch) => {
+  // const { id, front, back, set_id } = flashcard;
+  const { formData, set_id, id } = params;
+
   const res = await csrfFetch(
     `/api/flashcard_sets/${set_id}/flashcards/${id}`,
     {
       method: "PUT",
-      body: JSON.stringify({
-        front,
-        back,
-        set_id,
-      }),
+      // body: JSON.stringify({
+      //   front,
+      //   back,
+      //   set_id,
+      // }),
+      body: formData,
     }
   );
   const data = await res.json();
   console.log(data);
-
   dispatch(updateFlashcard(data));
+};
+
+export const removeState = (params) => async (dispatch) => {
+  const { flashcardId, set_id } = params;
+  // const res = await csrfFetch(
+  //   `/api/flashcard_sets/${set_id}/flashcards/${flashcardId}`,
+  //   {
+  //     method: "DELETE",
+  //   }
+  // );
+  dispatch(deleteFlashcard(flashcardId));
+  // return res;
 };
 
 export const remove = (params) => async (dispatch) => {
@@ -100,7 +113,6 @@ export const remove = (params) => async (dispatch) => {
     }
   );
   dispatch(deleteFlashcard(flashcardId));
-  return res;
 };
 
 const flashcardReducer = (state = {}, action) => {

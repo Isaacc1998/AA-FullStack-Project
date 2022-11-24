@@ -6,7 +6,16 @@ import { MdDeleteOutline } from "react-icons/md";
 
 import "./CreateSet.css";
 
-function NewCard({ setId, num, submit }) {
+function NewCard({
+  setId,
+  num,
+  submit,
+  slots,
+  setSlots,
+  setCardNum,
+  deleteCard,
+  setDeleteCard,
+}) {
   const dispatch = useDispatch();
   const file = useRef(null);
   const [term, setTerm] = useState();
@@ -32,13 +41,8 @@ function NewCard({ setId, num, submit }) {
       formData.append("flashcard[back]", definition);
       formData.append("flashcard[set_id]", setId);
 
-      // formData["front"] = term;
-      // formData["back"] = definition;
-      // formData["set_id"] = setId;
-
       if (imageFile) {
         formData.append("flashcard[photo]", imageFile);
-        // formData["photo"] = image;
       }
       dispatch(flashcardActions.create({ formData: formData, set_id: setId }));
     }
@@ -59,13 +63,11 @@ function NewCard({ setId, num, submit }) {
   };
 
   const handleChange = (e) => {
-    console.log("hit change");
     const file = e.currentTarget.files[0];
     if (file) {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onload = () => {
-        console.log(file, "hit");
         setImageFile(file);
         setImageURL(fileReader.result);
       };
@@ -74,11 +76,8 @@ function NewCard({ setId, num, submit }) {
       icons[num - 1].style.display = "none";
       labels[num - 1].style.display = "none";
 
-      // document.getElementById("imageIcon").style.display = "none";
-      // document.getElementById("imageLabel").style.display = "none";
       let images = document.getElementsByClassName("imagePreview");
       images[num - 1].style.display = "block";
-      // document.getElementById("imagePreview").style.display = "block";
     }
   };
 
@@ -108,9 +107,15 @@ function NewCard({ setId, num, submit }) {
           size="1.5rem"
           color={hover3 ? "orange" : "white"}
           className="trashImage2"
+          onClick={() => {
+            // let temp = [...slots];
+            // temp.splice(num - 1, 1);
+            // setSlots(temp);
+            setCardNum(num);
+            setDeleteCard(deleteCard + 1);
+          }}
           onMouseOver={() => setHover3(true)}
           onMouseOut={() => setHover3(false)}
-          // onClick={}
         ></MdDeleteOutline>
       </div>
       <div className="cardInfo">
