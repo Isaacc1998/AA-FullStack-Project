@@ -122,6 +122,8 @@
 }
 
 .cardNum {
+  display: flex;
+  justify-content: space-between;
   font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600;
   color: rgb(242, 235, 235);
@@ -263,4 +265,72 @@
 
 #submitSet:hover {
   background-color: #d9868c;
+}
+
+.addImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 84px;
+  height: 60px;
+  border: 0.125rem dashed;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-top: 15px;
+  color: rgb(245, 241, 241);
+}
+
+.addImage:hover {
+  color: yellow;
+}
+
+.imageLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+.fileButton {
+  display: none;
+  text-decoration: none;
+}
+
+.imagePreview {
+  display: none;
+  position: relative;
+  width: 84px;
+  height: 60px;
+  border-radius: 0.5rem;
+}
+
+.cardImage {
+  width: 84px;
+  height: 60px;
+  border-radius: 0.5rem;
+}
+
+.trashC {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  background-color: rgb(89, 89, 89);
+  border-radius: 0.25rem;
+  left: 50px;
+  bottom: 26px;
+  z-index: 11;
+}
+
+.trashC:hover {
+  transition-duration: 200ms;
+  background-color: rgb(245, 208, 24);
+}
+
+.trashImage2 {
+  cursor: pointer;
+  margin-right: 10px;
 }

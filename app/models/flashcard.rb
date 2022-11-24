@@ -10,6 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Flashcard < ApplicationRecord
+    
+    has_one_attached :photo
 
     belongs_to :flashcard_set,
         foreign_key: :set_id,

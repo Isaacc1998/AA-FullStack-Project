@@ -20,6 +20,7 @@
         json.front flashcard.front 
         json.back flashcard.back 
         json.set_id flashcard.set_id
+        json.photoURL flashcard.photo.url
         json.created_at flashcard.created_at 
         json.updated_at flashcard.updated_at
     end
