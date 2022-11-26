@@ -52,7 +52,8 @@ function FlashcardSet() {
   }, [array]);
 
   useEffect(() => {
-    dispatch(setActions.getUserFlashcardSets());
+    // dispatch(setActions.getUserFlashcardSets());
+    dispatch(setActions.getAllFlashcardSets());
     dispatch(flashcardActions.getFlashcards(setId));
   }, []);
   // console.log(sets);

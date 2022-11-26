@@ -7,6 +7,12 @@ const CREATE_SET = "flashcardSet/createSet";
 const DELETE_SET = "flashcardSet/deleteSet";
 const UPDATE_SET = "flashcardSet/updateSet";
 const RESET_SETS = "flashcardSet/resetSets";
+const RECEIVE_USER_SETS = "flashcardSet/receiveUserSets";
+
+const receiveUserSets = (sets) => ({
+  type: RECEIVE_USER_SETS,
+  sets,
+});
 
 export const resetSets = () => ({
   type: RESET_SETS,
@@ -49,7 +55,7 @@ export const getUserFlashcardSets = () => async (dispatch) => {
   });
   const data = await res.json();
 
-  dispatch(receiveSets(data));
+  dispatch(receiveUserSets(data));
 };
 
 // export const getRecentFlashcardSets = () => async (dispatch) => {};
@@ -118,6 +124,8 @@ const flashcardSetReducer = (state = {}, action) => {
       return newState;
     case RESET_SETS:
       return {};
+    case RECEIVE_USER_SETS:
+      return { ...newState, userSets: action.sets };
     default:
       return state;
   }

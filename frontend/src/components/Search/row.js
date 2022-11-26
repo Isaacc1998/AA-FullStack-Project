@@ -1,4 +1,8 @@
-import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
+import * as flashcardActions from "../../store/flashcard";
+import Image from "./image";
 import "./Search.css";
 
 function Row({ row }) {
@@ -7,22 +11,26 @@ function Row({ row }) {
   //     e.preventDefault();
   //     return history.push(`flashcardSet/${e.target.display.id}`);
   //   };
+
   return (
     <div className="searchRow">
-      {row.map((display) => {
-        return (
-          <div
-            className="searchSetDisplay"
-            onClick={() => {
-              return history.push(`/flashcardSet/${display.id}`);
-            }}
-          >
-            <div className="searchSetTitle">{display.title}</div>
-            <div className="searchSetNumber">{display.length} terms</div>
-            <div className="searchSetAuthor">{display.name}</div>
-          </div>
-        );
-      })}
+      {row &&
+        row.map((display) => {
+          return (
+            <div
+              className="searchSetDisplay"
+              onClick={(e) => {
+                e.preventDefault();
+                return history.push(`/flashcardSet/${display.id}`);
+              }}
+            >
+              <div className="searchSetTitle">{display.title}</div>
+              <div className="searchSetNumber">{display.length} terms</div>
+              <div className="searchSetAuthor">{display.name}</div>
+              <Image set={display} />
+            </div>
+          );
+        })}
     </div>
   );
 }

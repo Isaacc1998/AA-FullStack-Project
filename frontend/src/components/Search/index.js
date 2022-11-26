@@ -13,23 +13,29 @@ function Search() {
   const sets = useSelector((state) => {
     return state.sets;
   });
+
   const [value, setValue] = useState();
   const [arr, setArr] = useState();
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    dispatch(setActions.getAllFlashcardSets);
+    dispatch(setActions.getAllFlashcardSets());
   }, []);
 
   useEffect(() => {
+    console.log(sets);
     let search = window.location.search;
     let params = new URLSearchParams(search);
     let name = params.get("q");
     setValue(name);
     let matches = Object.values(sets)
       .filter((set) => {
-        let title = set.title.toLowerCase();
-        return title.startsWith(name.toLowerCase());
+        if ("title" in set) {
+          let title = set.title.toLowerCase();
+          return title.startsWith(name.toLowerCase());
+        } else {
+          return false;
+        }
       })
       .sort((a, b) => {
         return a.title.length - b.title.length;
@@ -51,9 +57,11 @@ function Search() {
 
     if (matches.length === 0) {
       document.getElementById("viewMore").style.display = "none";
+    } else {
+      document.getElementById("viewMore").style.display = "block";
     }
     setArr(rows);
-  }, [location, count]);
+  }, [location, sets, count]);
 
   const handleClick = (e) => {
     e.preventDefault();

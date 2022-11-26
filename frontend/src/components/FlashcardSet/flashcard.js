@@ -14,7 +14,22 @@ function Flashcard({ flashcard }) {
     let card = document.getElementById("card");
     card.classList.toggle("flip");
   };
-  console.log(flashcard.number);
+
+  let image;
+  if (flashcard.photoURL !== null) {
+    image = (
+      <div className="backImageContainer">
+        <img
+          className="backImage"
+          id="backImage"
+          src={flashcard.photoURL}
+          alt=""
+        />
+      </div>
+    );
+  } else {
+    image = "";
+  }
   return (
     <div className="outer">
       <div className="card" id="card" onClick={handleClick}>
@@ -32,8 +47,7 @@ function Flashcard({ flashcard }) {
           </div>
           {flashcard && (
             <div className="body">
-              {flashcard.back}
-              <img src={flashcard.photoURL} alt="" />
+              {flashcard.back} {image}
             </div>
           )}
         </div>

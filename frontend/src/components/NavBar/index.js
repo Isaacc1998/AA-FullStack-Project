@@ -45,8 +45,10 @@ function NavBar() {
   useEffect(() => {
     let matches = Object.values(sets)
       .filter((set) => {
-        let title = set.title.toLowerCase();
-        return title.startsWith(search.toLowerCase());
+        if ("title" in set) {
+          let title = set.title.toLowerCase();
+          return title.startsWith(search.toLowerCase());
+        }
       })
       .sort((a, b) => {
         return a.title.length - b.title.length;
