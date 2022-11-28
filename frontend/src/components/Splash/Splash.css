@@ -1,0 +1,12 @@
+@font-face {
+  font-family: hurme;
+  src: url(../../fonts/HurmeGeometricSans2-Regular.woff2) format("woff2"),
+    url(../../fonts/HurmeGeometricSans2-Regular.woff) format("woff");
+  display: swap;
+}
+* {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.splash-text {
+}

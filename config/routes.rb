@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   # post 'api/test', to: 'application#test'
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:index, :show, :create]
+    resources :users, only: [:index, :show, :create, :update]
     resource :session, only: [:show, :create, :destroy]
     resources :flashcard_sets, only: [:index, :show, :create, :update, :destroy] do 
       resources :flashcards, only: [:index, :show, :create, :update, :destroy] 

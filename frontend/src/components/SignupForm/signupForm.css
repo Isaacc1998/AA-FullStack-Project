@@ -13,6 +13,11 @@
   margin-bottom: 0.5%;
   width: 500px;
   height: 50px;
+  padding-left: 20px;
+}
+
+.email::placeholder {
+  color: rgb(135, 142, 148);
 }
 
 .username {
@@ -20,6 +25,11 @@
   margin-bottom: 0.5%;
   width: 500px;
   height: 50px;
+  padding-left: 20px;
+}
+
+.username::placeholder {
+  color: rgb(135, 142, 148);
 }
 
 .password2 {
@@ -27,6 +37,11 @@
   margin-bottom: 2%;
   width: 500px;
   height: 50px;
+  padding-left: 20px;
+}
+
+.password2::placeholder {
+  color: rgb(135, 142, 148);
 }
 
 .text {

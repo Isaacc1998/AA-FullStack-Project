@@ -1,0 +1,133 @@
+@font-face {
+  font-family: hurme;
+  src: url(../../fonts/HurmeGeometricSans2-Regular.woff2) format("woff2"),
+    url(../../fonts/HurmeGeometricSans2-Regular.woff) format("woff");
+  display: swap;
+}
+* {
+  font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.background10 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 800px;
+  border-top-style: solid;
+  border-color: #e3bdc0;
+}
+
+.profile-settings-container {
+  display: flex;
+  justify-content: center;
+  width: 1280px;
+  height: 536px;
+}
+
+.settings-box-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  height: 112px;
+}
+
+.profilePicture-header {
+  display: flex;
+  justify-content: center;
+  width: 186px;
+  height: 24px;
+  font-size: 20px;
+  font-weight: 700;
+  color: aliceblue;
+  letter-spacing: 1px;
+}
+
+.profile-selector-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 990px;
+  height: 520px;
+  padding: 16px;
+  background-color: #e3bdc0;
+  border-radius: 0.5rem;
+}
+
+.choose-header {
+  width: 958px;
+  height: 32px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  color: aliceblue;
+}
+
+.image-gallery {
+  width: 962px;
+  height: 300px;
+  margin-top: 10px;
+}
+
+.or-divider {
+  position: relative;
+  display: flex;
+  background: url(https://assets.quizlet.com/a/j/dist/app/i/upgrade/line.efb104298f12d60.png)
+    no-repeat 50%;
+  background-size: 100% 1px;
+  justify-content: center;
+  width: 958px;
+  clear: both;
+  margin: 8px 0;
+  height: 26px;
+  /* margin-top: 8px; */
+  /* margin-bottom: 8px; */
+}
+
+.or-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 32px;
+  height: 26px;
+  bottom: -4px;
+  color: #999999;
+  font-weight: 200;
+  background-color: rgb(35, 34, 49);
+}
+.upload-own {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 203px;
+  height: 42px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 0.25rem;
+  font-size: 14px;
+  color: #f0dfdf;
+  background-color: rgb(234, 151, 165);
+  cursor: pointer;
+}
+
+.upload-own:hover {
+  transition: 500ms;
+  background-color: #db4b57;
+}
+
+.user-image {
+  height: 70px;
+  aspect-ratio: auto 70 / 70;
+  width: 70px;
+  border-radius: 50%;
+}
+
+.settingsFileButton {
+  display: none;
+  text-decoration: none;
+}

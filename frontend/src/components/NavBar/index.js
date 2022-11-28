@@ -100,7 +100,14 @@ function NavBar() {
   return (
     <div className="navbar">
       <div className="leftNav">
-        <h2 id="logo">Flashlet</h2>
+        <h2
+          id="logo"
+          onClick={() => {
+            return history.push("/home");
+          }}
+        >
+          Flashlet
+        </h2>
         <div className="home">
           <NavLink id="home" to="/home">
             Home

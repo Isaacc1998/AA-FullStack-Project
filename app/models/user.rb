@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
-  # has_one_attached :photo
+  has_one_attached :photo
   
   has_many :flashcard_sets,
     foreign_key: :author_id,

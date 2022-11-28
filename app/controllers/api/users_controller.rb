@@ -23,10 +23,21 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update 
+    @user = current_user
+    # @user.photo.attach(user_params[:photo])
+    # p "helllloooooo"
+    if @user.update(user_params)
+      render "api/users/show"
+    else
+      render json: {user: nil}
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password)
+    params.require(:user).permit(:email, :username, :password, :photo)
   end
 end
 

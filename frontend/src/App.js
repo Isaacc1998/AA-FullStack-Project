@@ -10,7 +10,9 @@ import CreateSet from "./components/CreateSet";
 import EditSet from "./components/EditSet";
 import Splash from "./components/Splash/splash";
 import Search from "./components/Search";
+import Settings from "./components/Settings";
 import { useSelector } from "react-redux";
+
 function App() {
   window.onclick = (e) => {
     if (!e.target.matches(".menu-dropdown") && !e.target.matches(".create")) {
@@ -67,6 +69,9 @@ function App() {
         </Route>
         <Route path="/flashcardSet/:setId">
           <FlashcardSet />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </div>

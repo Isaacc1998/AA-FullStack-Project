@@ -56,7 +56,10 @@ function LoginForm() {
           <h2 className="title">Log In</h2>
           <div id="errors">
             {errors.map((error) => (
-              <div key={error}> • {error}</div>
+              <div className="error" key={error}>
+                {" "}
+                • {error}
+              </div>
             ))}
           </div>
           <input

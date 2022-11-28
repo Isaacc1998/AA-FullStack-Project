@@ -39,6 +39,12 @@ function SignupForm() {
     );
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    return dispatch(
+      sessionActions.login({ credential: "Demo", password: "password" })
+    );
+  };
   return (
     <>
       <form id="form" onSubmit={handleSubmit}>
@@ -80,6 +86,12 @@ function SignupForm() {
           <button className="submit" type="submit">
             Sign Up
           </button>
+          <input
+            onClick={handleClick}
+            className="submit"
+            type="button"
+            value="Log in as Demo User"
+          />
         </div>
       </form>
     </>

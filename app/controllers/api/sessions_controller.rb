@@ -24,6 +24,12 @@ class Api::SessionsController < ApplicationController
     logout!
     render json: { message: 'success' }
   end
+
+  # private 
+
+  # def user_params
+  #   params.require(:user).permit(:email, :username, :password)
+  # end
 end
 
 
