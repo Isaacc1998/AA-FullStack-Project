@@ -10,9 +10,11 @@ function SetDisplay({ set }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
+  const allUsers = useSelector((state) => state.users.allUsers);
   const flashcards = useSelector((state) => state.flashcards);
   const [image, setImage] = useState();
   const [username, setUsername] = useState();
+  const [profileImage, setProfileImage] = useState();
 
   useEffect(() => {
     // if () {
@@ -20,10 +22,16 @@ function SetDisplay({ set }) {
     // }
     dispatch(userActions.getUser(set.authorId));
     dispatch(flashcardActions.getFlashcards(set.id));
+    dispatch(userActions.getAllUsers());
     setTimeout(() => {
       setUsername(users[set.authorId].user.username);
     }, 100);
   }, []);
+
+  useEffect(() => {
+    let pic = allUsers[set.authorId].photoURL;
+    setProfileImage(pic);
+  }, [allUsers]);
 
   useEffect(() => {
     let matches = Object.values(flashcards).filter((card) => {
@@ -42,13 +50,20 @@ function SetDisplay({ set }) {
     return history.push(`/flashcardSet/${set.id}`);
   };
 
-  // console.log(username);
-
+  let preview;
+  if (allUsers[set.authorId].photoURL) {
+    preview = <img className="previewProfileImage" src={profileImage} alt="" />;
+  } else {
+    preview = "";
+  }
   return (
     <div className="preview" onClick={handleClick}>
       <div className="previewTitle">{set.title}</div>
       <div className="previewNum">{set.length} Terms</div>
-      <div className="previewAuthor">{set.name}</div>
+      <div className="previewAuthor">
+        {preview}
+        {set.name}
+      </div>
       <img className="previewImage" src={image} alt="" />
     </div>
   );

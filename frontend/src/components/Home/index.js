@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as setActions from "../../store/flashcardSet";
+import * as userActions from "../../store/user";
 import { Redirect } from "react-router-dom";
 import SetDisplay from "./setDisplay";
 import "./Home.css";
@@ -14,12 +15,14 @@ function Home() {
   const sessionUser = useSelector((state) => {
     return state.session.user;
   });
+
   // const [filled, setFilled] = useState(false);
   const [array, setArray] = useState([]);
   const [rows, setRows] = useState();
 
   useEffect(() => {
     dispatch(setActions.getAllFlashcardSets());
+    dispatch(userActions.getAllUsers());
   }, []);
 
   useEffect(() => {
@@ -37,7 +40,7 @@ function Home() {
 
   return (
     <div className="background4">
-      <h3 className="homeHeader">Flashcard Sets</h3>
+      <h3 className="homeHeader">Study Sets</h3>
       <div className="flexContainer">
         <div className="rows">
           {array &&

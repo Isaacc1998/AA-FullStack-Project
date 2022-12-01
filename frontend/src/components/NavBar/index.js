@@ -122,12 +122,12 @@ function NavBar() {
             <NavLink id="studyset" className="nav" exact to="/createSet">
               Study set
             </NavLink>
-            <NavLink id="folder" className="nav" exact to="/createFolder">
+            {/* <NavLink id="folder" className="nav" exact to="/createFolder">
               Folder
             </NavLink>
             <NavLink id="class" className="nav" exact to="/createClass">
               Class
-            </NavLink>
+            </NavLink> */}
           </div>
         </div>
       </div>

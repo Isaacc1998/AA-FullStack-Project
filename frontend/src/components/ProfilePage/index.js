@@ -14,12 +14,23 @@ function ProfilePage() {
   let history = useHistory();
   const dispatch = useDispatch();
   const sets = useSelector((state) => state.sets);
-  const [set, setSet] = useState();
+  const sessionUser = useSelector((state) => {
+    return state.session.user;
+  });
+  const [userSets, setUserSets] = useState([]);
   useEffect(() => {
-    dispatch(resetSets());
-    dispatch(setActions.getUserFlashcardSets());
+    // dispatch(resetSets());
+    // dispatch(setActions.getUserFlashcardSets());
     dispatch(setActions.getAllFlashcardSets());
   }, []);
+
+  useEffect(() => {
+    let matches = Object.values(sets).filter((set) => {
+      return set.authorId === Object.values(sessionUser)[0].id;
+    });
+    console.log(matches, "dis dem matches");
+    setUserSets(matches);
+  }, [sets]);
 
   // if (set !== -1) {
   //   //how to call this in the App while passing in params?
@@ -27,11 +38,10 @@ function ProfilePage() {
   //   // return <Redirect to={`/flashcardSet/${set.id}`} />;
   //   history.push(`/flashcardSet/${set.id}`);
   // }
-  console.log(sets.userSets);
 
   const handleClick = (set) => {
     //in this case set is actually setId
-    return history.push(`/flashcardSet/${set}`);
+    return history.push(`/flashcardSet/${set.id}`);
   };
   return (
     <div className="background">
@@ -45,25 +55,24 @@ function ProfilePage() {
             placeholder="Search your sets"
           />
   </div> */}
-        {sets.userSets &&
-          Object.keys(sets.userSets).map((set) => (
+        {userSets.map((set) => {
+          return (
             <div
-              key={sets.userSets[set].id}
+              key={set.id}
               className="set"
               onClick={(e) => {
-                setSet(sets[set]);
-                console.log(set);
                 handleClick(set);
               }}
             >
               <div className="setDetails">
-                {`${sets.userSets[set].length} Terms | ${sets.userSets[set].name}`}
+                {`${set.length} Terms | ${set.name}`}
               </div>
-              <div key={set.author_id} className="setHeader">
-                {sets.userSets[set].title}
+              <div key={set.authorId} className="setHeader">
+                {set.title}
               </div>
             </div>
-          ))}
+          );
+        })}
       </div>
     </div>
   );

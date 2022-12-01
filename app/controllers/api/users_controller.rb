@@ -3,9 +3,10 @@ class Api::UsersController < ApplicationController
   '/api/users/index'
 
   def index 
-    @sets = FlashcardSet.where("author_id = ?", current_user.id);
-    
-    render "api/flashcardSets/index"
+    # @sets = FlashcardSet.where("author_id = ?", current_user.id);
+    # render "api/flashcardSets/index"
+    @users = User.all()
+    render "api/users/index"
   end 
 
   def show 

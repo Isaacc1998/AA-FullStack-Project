@@ -142,6 +142,8 @@
 }
 
 .searchSetAuthor {
+  display: flex;
+  align-items: center;
   font-size: 12px;
   font-weight: 600;
   color: azure;

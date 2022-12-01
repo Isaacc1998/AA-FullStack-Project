@@ -28,6 +28,7 @@
 }
 
 .createNew {
+  display: flex;
   width: 1220px;
   height: 64px;
   margin-top: 42px;
@@ -40,6 +41,13 @@
   font-variant-ligatures: common-ligatures contextual;
   line-height: 1.2;
   color: white;
+}
+
+.createErrorList {
+  margin-left: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(197, 61, 61);
 }
 
 .createForm {

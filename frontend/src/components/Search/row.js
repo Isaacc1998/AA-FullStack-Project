@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import * as flashcardActions from "../../store/flashcard";
 import Image from "./image";
+import ProfileImage from "./profileImage";
 import "./Search.css";
 
 function Row({ row }) {
@@ -26,7 +27,10 @@ function Row({ row }) {
             >
               <div className="searchSetTitle">{display.title}</div>
               <div className="searchSetNumber">{display.length} terms</div>
-              <div className="searchSetAuthor">{display.name}</div>
+              <div className="searchSetAuthor">
+                <ProfileImage set={display} />
+                {display.name}
+              </div>
               <Image set={display} />
             </div>
           );

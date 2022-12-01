@@ -15,25 +15,35 @@ function CreateSet() {
     return state.session.user;
   });
   let sets = useSelector((state) => state.sets);
-  const [title, setTitle] = useState();
-  const [slots, setSlots] = useState([{ num: 1 }, { num: 2 }]);
+  const [title, setTitle] = useState("");
+  const [slots, setSlots] = useState([{ num: Math.random() * 100000 }]);
   const [setId, setSetId] = useState();
   const [cardNum, setCardNum] = useState();
+  const [filled, setFilled] = useState({});
+  const [errors, setErrors] = useState([]);
   const [deleteCard, setDeleteCard] = useState(0);
   // useEffect(() => {}, [slots.length]);
   useEffect(() => {
-    let temp = [...slots];
-    temp.splice(cardNum - 1, 1);
-    // for (let j = 0; j < temp.length; j++) {
-    //   temp[j].num = j + 1;
-    // }
-    setSlots(temp);
-    i = temp.length;
+    if (cardNum) {
+      let temp = [];
+      for (let j = 0; j < slots.length; j++) {
+        temp.push(slots[j]);
+      }
+
+      temp.splice(cardNum - 1, 1);
+
+      // for (let j = 0; j < temp.length; j++) {
+      //   temp[j].num = j + 1;
+      // }
+      setSlots(temp);
+      // i = temp.length;
+      console.log(temp, "dem slots 2");
+    }
   }, [deleteCard]);
 
   useEffect(() => {
-    if (i > 2) {
-      i = 2;
+    if (slots.length > 1) {
+      slots.length = 1;
     }
     if (Object.keys(sets).length > 0) {
       sets = {};
@@ -53,14 +63,56 @@ function CreateSet() {
   const handleAdd = (e) => {
     // console.log(i);
     e.preventDefault();
-    i += 1;
+    // i += 1;
     let temp = [...slots];
-    temp.push({ num: i });
+    console.log(temp, "dem slots");
+    // temp.push({ num: slots.length + 1 });
+    temp.push({ num: Math.random() * 1000000 });
+
     setSlots(temp);
   };
   const handleCreate = (e) => {
     e.preventDefault();
-    return dispatch(setActions.create({ title: title }));
+    let errorMessages = document.getElementsByClassName("createErrorMessage");
+    for (let j = errorMessages.length - 1; j >= 0; j--) {
+      errorMessages[j].remove();
+    }
+    let good = true;
+    let temp = [...errors];
+    let valid = !Object.values(filled).includes(false);
+    let containsTrue = Object.values(filled).includes(true);
+
+    console.log(filled, "filled create");
+    console.log(slots, "slots create");
+
+    if (title === "") {
+      temp.push(
+        <div className="createErrorMessage">
+          * You cannot leave the title blank!
+        </div>
+      );
+      setErrors(temp);
+      good = false;
+    }
+    if (containsTrue === false) {
+      temp.push(
+        <div className="createErrorMessage">
+          * You must fill at least one card!
+        </div>
+      );
+      setErrors(temp);
+    } else if (!valid || Object.values(filled).length !== slots.length) {
+      temp.push(
+        <div className="createErrorMessage">
+          * You cannot have blank terms or definitions on cards!
+        </div>
+      );
+      setErrors(temp);
+    } else if (good === false) {
+    } else {
+      return dispatch(setActions.create({ title: title }));
+    }
+
     // let set_id = Object.keys(sets)[0].id;
     // console.log(sets);
     // setSetId(set_id);
@@ -75,7 +127,10 @@ function CreateSet() {
 
   return (
     <div className="background3">
-      <h2 className="createNew">Create a new study set</h2>
+      <div className="createNew">
+        Create a new study set
+        <div className="createErrorList">{errors}</div>
+      </div>
       <div className="createForm">
         <div className="addTitle">
           <span className="titleHead">Title</span>
@@ -103,6 +158,9 @@ function CreateSet() {
                 setCardNum={setCardNum}
                 deleteCard={deleteCard}
                 setDeleteCard={setDeleteCard}
+                filled={filled}
+                setFilled={setFilled}
+                keyNum={card.num}
               ></NewCard>
             </React.Fragment>
           );

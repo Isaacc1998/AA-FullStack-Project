@@ -15,6 +15,9 @@ function NewCard({
   setCardNum,
   deleteCard,
   setDeleteCard,
+  filled,
+  setFilled,
+  keyNum,
 }) {
   const dispatch = useDispatch();
   const file = useRef(null);
@@ -25,6 +28,7 @@ function NewCard({
   const [hover3, setHover3] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState(null);
+  const [length, setLength] = useState(filled.count + 1);
   // console.log(setId);
 
   useEffect(() => {
@@ -57,6 +61,30 @@ function NewCard({
       });
     }
   }, [submit]);
+
+  // useEffect(()=>{
+  //   let temp = { ...filled };
+
+  // }, [])
+
+  useEffect(() => {
+    let temp = { ...filled };
+
+    if (!temp.hasOwnProperty(keyNum)) {
+      temp[keyNum] = false;
+    }
+    console.log(temp, "this is temp");
+
+    if (term && definition) {
+      if (temp[keyNum] === false) {
+        temp[keyNum] = true;
+        setFilled(temp);
+      }
+    } else {
+      temp[keyNum] = false;
+      setFilled(temp);
+    }
+  }, [term, definition]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,12 +135,16 @@ function NewCard({
           size="1.5rem"
           color={hover3 ? "orange" : "white"}
           className="trashImage2"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             // let temp = [...slots];
             // temp.splice(num - 1, 1);
             // setSlots(temp);
             setCardNum(num);
             setDeleteCard(deleteCard + 1);
+            let temp2 = { ...filled };
+            delete temp2[keyNum];
+            setFilled(temp2);
           }}
           onMouseOver={() => setHover3(true)}
           onMouseOut={() => setHover3(false)}

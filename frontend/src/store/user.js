@@ -1,8 +1,14 @@
 import csrfFetch from "./csrf";
 
+const RECEIVE_USERS = "user/receiveUsers";
 const RECEIVE_USER = "user/receiveUser";
 const REMOVE_USERS = "user/removeUsers";
 const UPDATE_USER = "user/updateUser";
+
+const receiveUsers = (users) => ({
+  type: RECEIVE_USERS,
+  users,
+});
 
 const updateUser = (user) => ({
   type: UPDATE_USER,
@@ -33,6 +39,13 @@ export const update = (params) => async (dispatch) => {
   dispatch(updateUser(data));
 };
 
+export const getAllUsers = () => async (dispatch) => {
+  const res = await csrfFetch("/api/users");
+  const data = await res.json();
+  console.log(data, "Dis dem USERSS");
+  dispatch(receiveUsers(data));
+};
+
 export const getUser = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}`);
   const data = await res.json();
@@ -43,6 +56,8 @@ export const getUser = (userId) => async (dispatch) => {
 const userReducer = (state = {}, action) => {
   let newState = { ...state };
   switch (action.type) {
+    case RECEIVE_USERS:
+      return { ...state, allUsers: action.users };
     case RECEIVE_USER:
       // newState[action.user.id] = action.user;
       // return newState;

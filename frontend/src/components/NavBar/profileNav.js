@@ -11,7 +11,6 @@ import { removeUsers } from "../../store/user";
 import "./profile.css";
 
 function ProfileNav({ user }) {
-  const image = getProfileImage();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const users = useSelector((state) => state.users.user);
@@ -23,6 +22,7 @@ function ProfileNav({ user }) {
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
+    const image = getProfileImage();
     let userId = Object.keys(sessionUser)[0];
     let user = Object.values(sessionUser)[0];
     if (user.photoURL === null) {
@@ -38,7 +38,7 @@ function ProfileNav({ user }) {
 
   useEffect(() => {
     if (users) {
-      setUserImage(Object.values(users)[0].photoURL);
+      setUserImage(Object.values(sessionUser)[0].photoURL);
       setCurrentUser(Object.values(sessionUser)[0]);
     }
   }, [photo]);
@@ -77,7 +77,7 @@ function ProfileNav({ user }) {
               id="profileNav"
               className="nav"
               exact
-              to={`/users/${user.id}`}
+              to={`/users/${Object.keys(sessionUser)[0]}`}
             >
               Profile
             </NavLink>

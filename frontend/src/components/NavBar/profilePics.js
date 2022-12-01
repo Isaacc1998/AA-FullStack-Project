@@ -50,6 +50,8 @@ const getProfileImage = () => {
     case 7:
       filename = "bear.png";
   }
+  console.log("HHHIIIIIIIT HHHHHEEEERRREE!!");
+
   return convertURLtoFile(data, filename);
 };
 

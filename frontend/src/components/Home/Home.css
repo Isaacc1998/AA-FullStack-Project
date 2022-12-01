@@ -49,6 +49,7 @@
   border-radius: 0.4rem;
   border-bottom: 0.25rem solid rgba(255, 255, 255, 0);
   padding: 25px;
+  cursor: pointer;
 }
 
 .preview:hover {
@@ -70,10 +71,19 @@
 }
 
 .previewAuthor {
+  display: flex;
+  align-items: center;
   color: azure;
   margin-top: 16%;
   font-size: 14px;
   font-weight: 600;
+}
+
+.previewProfileImage {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 6px;
 }
 
 .previewImage {

@@ -26,15 +26,21 @@ function FlashcardSet() {
   const dispatch = useDispatch();
   const { setId } = useParams();
   const sets = useSelector((state) => state.sets);
-  const set = sets[setId];
+  // let set;
+  // if (sets) {
+  //   set = sets[setId];
+  // }
   const flashcards = useSelector((state) => state.flashcards);
   const sessionUser = useSelector((state) => {
     return state.session.user;
   });
   const users = useSelector((state) => state.users);
+  const allUsers = useSelector((state) => state.users.allUsers);
+  const [set, setSet] = useState(null);
   const [card, setCard] = useState();
   const [done, setDone] = useState(false);
   const [username, setUsername] = useState();
+  const [profileImage, setProfileImage] = useState();
   const array = Object.keys(flashcards).map((key) => {
     return flashcards[key];
   });
@@ -53,13 +59,27 @@ function FlashcardSet() {
 
   useEffect(() => {
     // dispatch(setActions.getUserFlashcardSets());
+    dispatch(userActions.getAllUsers());
     dispatch(setActions.getAllFlashcardSets());
     dispatch(flashcardActions.getFlashcards(setId));
   }, []);
   // console.log(sets);
   // console.log(set);
+
   useEffect(() => {
-    console.log(set);
+    if (setId in sets && allUsers) {
+      // console.log(allUsers, "da  USER");
+      // console.log(sets, "da SETS");
+      let pic = allUsers[sets[setId].authorId].photoURL;
+      setProfileImage(pic);
+    }
+    if (sets) {
+      setSet(sets[setId]);
+    }
+  }, [allUsers, sets]);
+
+  //******* dsda
+  useEffect(() => {
     setTimeout(() => {
       dispatch(userActions.getUser(set.authorId));
       setUsername(users[set.authorId].user.username);
@@ -80,6 +100,13 @@ function FlashcardSet() {
       document.getElementById("editCircle").style.display = "none";
     }
   }, [username]);
+
+  // useEffect(() => {
+  //   if (set !== null) {
+  //     let pic = allUsers[set.authorId].photoURL;
+  //     setProfileImage(pic);
+  //   }
+  // }, [set]);
 
   const handleLeft = (e) => {
     if (i > 0) {
@@ -153,6 +180,11 @@ function FlashcardSet() {
       </div>
       <div className="bottomStuff">
         <div className="ownerInfo">
+          <img
+            className="previewProfileImage2"
+            src={profileImage && profileImage}
+            alt=""
+          />
           <div className="botLeft">
             <div className="by">Created by</div>
             <div className="creator">{set && set.name}</div>
