@@ -13,6 +13,9 @@ function PreCard({
   preDefinition,
   submit,
   setDeletePreCard,
+  filled,
+  setFilled,
+  keyNum,
 }) {
   const dispatch = useDispatch();
   const file = useRef(null);
@@ -28,6 +31,24 @@ function PreCard({
     setTerm(preTerm);
     setDefinition(preDefinition);
   }, []);
+
+  useEffect(() => {
+    let temp = { ...filled };
+
+    if (term && definition) {
+      if (temp[keyNum] === false) {
+        temp[keyNum] = true;
+        setFilled(temp);
+      }
+    } else {
+      temp[keyNum] = false;
+      setFilled(temp);
+    }
+
+    // if (!term || !definition) {
+
+    // }
+  }, [term, definition]);
 
   useEffect(() => {
     // console.log(submit, "this is submit");
@@ -110,6 +131,9 @@ function PreCard({
             // setDeleteCard(deleteCard + 1);
             setDeletePreCard(id);
             console.log("clicked delete");
+            let temp2 = { ...filled };
+            delete temp2[keyNum];
+            setFilled(temp2);
           }}
           onMouseOver={() => setHover3(true)}
           onMouseOut={() => setHover3(false)}

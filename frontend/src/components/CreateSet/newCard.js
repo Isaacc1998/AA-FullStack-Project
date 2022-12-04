@@ -73,7 +73,6 @@ function NewCard({
     if (!temp.hasOwnProperty(keyNum)) {
       temp[keyNum] = false;
     }
-    console.log(temp, "this is temp");
 
     if (term && definition) {
       if (temp[keyNum] === false) {

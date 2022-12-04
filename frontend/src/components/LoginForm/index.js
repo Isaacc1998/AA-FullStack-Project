@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-
+import Image1 from "./images/git-logo.png";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { FaAngellist } from "react-icons/fa";
 import "./loginForm.css";
 
 function LoginForm() {
@@ -89,6 +91,27 @@ function LoginForm() {
             type="button"
             value="Log in as Demo User"
           />
+        </div>
+        <div className="favicons">
+          <a href="https://github.com/Isaacc1998">
+            <BsGithub
+              className="git-logo"
+              size="2.5rem"
+              color="pink"
+            ></BsGithub>
+          </a>
+          <a href="https://www.linkedin.com/in/isaac-choi-38636723b/">
+            <BsLinkedin
+              className="linked-logo"
+              size="2.5rem"
+              color="pink"
+            ></BsLinkedin>
+          </a>
+          <FaAngellist
+            className="angel-logo"
+            size="2.5rem"
+            color="pink"
+          ></FaAngellist>
         </div>
       </form>
     </>

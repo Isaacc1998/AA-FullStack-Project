@@ -35,7 +35,6 @@ function Settings() {
     const formData = new FormData();
 
     if (imageFile) {
-      console.log(imageFile, "this is imageFile");
       formData.append("user[photo]", imageFile);
       dispatch(userActions.update({ formData: formData, id: userId }));
     }
@@ -76,10 +75,8 @@ function Settings() {
           <div className="or-divider">
             <div className="or-text">or</div>
           </div>
-          <form className="upload-own">
-            <div className="upload-own-text" onClick={handleClick}>
-              Upload your own photo
-            </div>
+          <form className="upload-own" onClick={handleClick}>
+            <div className="upload-own-text">Upload your own photo</div>
             <input
               type="file"
               className="settingsFileButton"

@@ -79,3 +79,13 @@
 #errors div {
   color: rgb(255, 132, 0);
 }
+
+.favicons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  width: 160px;
+  left: 1475px;
+  top: 825px;
+}

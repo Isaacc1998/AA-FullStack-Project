@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import * as flashcardActions from "../../store/flashcard";
 import Image from "./image";
 import ProfileImage from "./profileImage";
+import SetImage from "./setImage";
 import "./Search.css";
 
 function Row({ row }) {
@@ -25,13 +26,15 @@ function Row({ row }) {
                 return history.push(`/flashcardSet/${display.id}`);
               }}
             >
-              <div className="searchSetTitle">{display.title}</div>
+              <div className="searchSetTitle">
+                {display.title}
+                <SetImage set={display} />
+              </div>
               <div className="searchSetNumber">{display.length} terms</div>
               <div className="searchSetAuthor">
                 <ProfileImage set={display} />
                 {display.name}
               </div>
-              <Image set={display} />
             </div>
           );
         })}

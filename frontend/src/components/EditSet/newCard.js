@@ -14,6 +14,9 @@ function NewCard({
   setCardNum,
   deleteCard,
   setDeleteCard,
+  filled,
+  setFilled,
+  keyNum,
 }) {
   const dispatch = useDispatch();
   const file = useRef(null);
@@ -58,6 +61,24 @@ function NewCard({
       dispatch(flashcardActions.create({ formData: formData, set_id: setId }));
     }
   }, [submit]);
+
+  useEffect(() => {
+    let temp = { ...filled };
+
+    if (!temp.hasOwnProperty(keyNum)) {
+      temp[keyNum] = false;
+    }
+
+    if (term && definition) {
+      if (temp[keyNum] === false) {
+        temp[keyNum] = true;
+        setFilled(temp);
+      }
+    } else {
+      temp[keyNum] = false;
+      setFilled(temp);
+    }
+  }, [term, definition]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -114,6 +135,10 @@ function NewCard({
             //num is the display num of this component
             setCardNum(cardNum);
             setDeleteCard(deleteCard + 1);
+            let temp2 = { ...filled };
+            delete temp2[keyNum];
+            setFilled(temp2);
+            console.log(filled, "deleted");
           }}
           onMouseOver={() => setHover3(true)}
           onMouseOut={() => setHover3(false)}

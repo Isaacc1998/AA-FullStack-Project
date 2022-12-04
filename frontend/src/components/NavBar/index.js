@@ -77,7 +77,12 @@ function NavBar() {
       let searchList = document.getElementById("searchList");
       searchList.style.display = "none";
     }
-    if (!e.target.matches(".menu-dropdown") && !e.target.matches(".create")) {
+    if (
+      !e.target.matches(".menu-dropdown") &&
+      !e.target.matches(".create") &&
+      !e.target.matches(".down") &&
+      !e.target.matches(".invis")
+    ) {
       let menu = document.getElementById("createMenu");
       menu.style.display = "none";
     }
@@ -117,6 +122,7 @@ function NavBar() {
           <div onClick={handleClick} className="create">
             Create
             <HiChevronDown className="down" size="1.5rem"></HiChevronDown>
+            <div className="invis" onClick={handleClick}></div>
           </div>
           <div id="createMenu" className="menu-dropdown">
             <NavLink id="studyset" className="nav" exact to="/createSet">

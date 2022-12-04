@@ -35,6 +35,8 @@ function EditSet() {
   //setting the id of preCard to be deleted
   const [deletePreCard, setDeletePreCard] = useState();
   const [deleteList, setDeleteList] = useState([]);
+  const [filled, setFilled] = useState({});
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     let temp = [...slots];
@@ -91,11 +93,19 @@ function EditSet() {
   }, [done]);
 
   useEffect(() => {
+    let temp = { ...filled };
+    for (let k = 0; k < Object.keys(cards).length; k++) {
+      temp[k] = true;
+    }
+    setFilled(temp);
+  }, [cards]);
+
+  useEffect(() => {
     let temp = [];
 
     Object.keys(cards).forEach((card) => {
       i += 1;
-      temp.push({ num: i });
+      temp.push({ num: Math.random() * 100000 });
     });
 
     // setSlots(temp);
@@ -114,14 +124,55 @@ function EditSet() {
     e.preventDefault();
     i += 1;
     let temp = [...slots];
-    temp.push({ num: i });
+    temp.push({ num: Math.random() * 100000 });
     setSlots(temp);
   };
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    setSubmit(true);
-    return dispatch(setActions.update({ title, setId }));
+    let errorMessages = document.getElementsByClassName("createErrorMessage");
+    for (let j = errorMessages.length - 1; j >= 0; j--) {
+      errorMessages[j].remove();
+    }
+    let good = true;
+    let temp = [...errors];
+    let valid = !Object.values(filled).includes(false);
+    let containsTrue = Object.values(filled).includes(true);
+
+    console.log(filled, "filled on submit");
+    console.log(slots, "slots");
+    console.log(cards, "cards");
+
+    if (title === "") {
+      temp.push(
+        <div className="createErrorMessage">
+          * You cannot leave the title blank!
+        </div>
+      );
+      setErrors(temp);
+      good = false;
+    }
+    if (containsTrue === false) {
+      temp.push(
+        <div className="createErrorMessage">
+          * You must fill at least one card!
+        </div>
+      );
+      setErrors(temp);
+    } else if (
+      !valid ||
+      Object.values(filled).length !== Object.keys(cards).length + slots.length
+    ) {
+      temp.push(
+        <div className="createErrorMessage">
+          * You cannot have blank terms or definitions on cards!
+        </div>
+      );
+      setErrors(temp);
+    } else if (good === false) {
+    } else {
+      setDone(true);
+    }
   };
 
   //   if (submit === true) {
@@ -131,7 +182,10 @@ function EditSet() {
   //   }
   return (
     <div className="background3">
-      <h2 className="createNew">Edit study set</h2>
+      <div className="createNew">
+        Edit study set
+        <div className="createErrorList">{errors}</div>
+      </div>
       <div className="createForm">
         <div className="addTitle">
           <span className="titleHead">Title</span>
@@ -162,6 +216,9 @@ function EditSet() {
                   submit={done}
                   setSubmit={setDone}
                   setDeletePreCard={setDeletePreCard}
+                  filled={filled}
+                  setFilled={setFilled}
+                  keyNum={Object.keys(filled)[idx]}
                 ></PreCard>
               </React.Fragment>
             );
@@ -178,6 +235,9 @@ function EditSet() {
               setCardNum={setCardNum}
               deleteCard={deleteCard}
               setDeleteCard={setDeleteCard}
+              filled={filled}
+              setFilled={setFilled}
+              keyNum={card.num}
             ></NewCard>
           </React.Fragment>
         ))}
@@ -188,14 +248,7 @@ function EditSet() {
         </div>
         <div className="add">ADD CARD</div>
       </div>
-      <div
-        onClick={(e) => {
-          // e.preventDefault();
-          // console.log("clicked");
-          setDone(true);
-        }}
-        id="submitSet"
-      >
+      <div onClick={handleUpdate} id="submitSet">
         Done
       </div>
     </div>

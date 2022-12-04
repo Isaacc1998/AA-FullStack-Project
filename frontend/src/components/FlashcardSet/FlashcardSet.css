@@ -257,12 +257,15 @@
 
 #delete {
   display: none;
+  position: absolute;
   width: 150px;
   height: 45px;
   border-radius: 0.5rem;
   background-color: rgb(166, 126, 126);
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  top: 46px;
+  left: 308px;
   z-index: 11;
 }
 
@@ -302,6 +305,7 @@
 
 .botRight {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-end;
 }

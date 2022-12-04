@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { FaAngellist } from "react-icons/fa";
 import "./signupForm.css";
 
 function SignupForm() {
@@ -56,7 +58,7 @@ function SignupForm() {
               <div key={error}> • {error}</div>
             ))}
           </div>
-          <label className="text">Email</label>
+
           <input
             className="email"
             type="text"
@@ -65,7 +67,8 @@ function SignupForm() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label className="text">Username</label>
+          <label className="text">Email</label>
+
           <input
             className="username"
             type="text"
@@ -74,7 +77,7 @@ function SignupForm() {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <label className="text">Password</label>
+          <label className="text">Username</label>
           <input
             className="password2"
             type="password"
@@ -83,6 +86,7 @@ function SignupForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <label className="text">Password</label>
           <button className="submit" type="submit">
             Sign Up
           </button>
@@ -94,6 +98,23 @@ function SignupForm() {
           />
         </div>
       </form>
+      <div className="favicons">
+        <a href="https://github.com/Isaacc1998">
+          <BsGithub className="git-logo" size="2.5rem" color="pink"></BsGithub>
+        </a>
+        <a href="https://www.linkedin.com/in/isaac-choi-38636723b/">
+          <BsLinkedin
+            className="linked-logo"
+            size="2.5rem"
+            color="pink"
+          ></BsLinkedin>
+        </a>
+        <FaAngellist
+          className="angel-logo"
+          size="2.5rem"
+          color="pink"
+        ></FaAngellist>
+      </div>
     </>
   );
 }

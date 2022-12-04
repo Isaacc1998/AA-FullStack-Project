@@ -20,7 +20,6 @@ function ProfileImage({ set }) {
   }, [users]);
 
   let image;
-  console.log(profileImage, "profileImage");
   if (profileImage) {
     image = <img className="previewProfileImage" src={profileImage} alt="" />;
   } else {

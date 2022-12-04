@@ -65,7 +65,7 @@ function CreateSet() {
     e.preventDefault();
     // i += 1;
     let temp = [...slots];
-    console.log(temp, "dem slots");
+    console.log(temp, "on add");
     // temp.push({ num: slots.length + 1 });
     temp.push({ num: Math.random() * 1000000 });
 
@@ -81,9 +81,6 @@ function CreateSet() {
     let temp = [...errors];
     let valid = !Object.values(filled).includes(false);
     let containsTrue = Object.values(filled).includes(true);
-
-    console.log(filled, "filled create");
-    console.log(slots, "slots create");
 
     if (title === "") {
       temp.push(

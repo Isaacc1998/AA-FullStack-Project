@@ -161,6 +161,13 @@ function FlashcardSet() {
     document.getElementById("delete").style.display = "block";
   };
   const numbers = { number: i + 1, length: array.length };
+
+  window.onclick = (e) => {
+    if (!e.target.matches(".delete") && !e.target.matches(".more")) {
+      document.getElementById("delete").style.display = "none";
+    }
+  };
+
   return (
     <div className="outerBox">
       <div className="background2">

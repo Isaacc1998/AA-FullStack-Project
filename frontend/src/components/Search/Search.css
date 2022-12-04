@@ -122,6 +122,9 @@
 }
 
 .searchSetTitle {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
   color: azure;
   font-size: 18px;
   font-weight: 600;
@@ -157,4 +160,13 @@
   border-radius: 0.5rem;
   left: 240px;
   bottom: 80px;
+}
+
+.previewSetImage {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  border-radius: 0.5rem;
+  top: 2px;
+  left: 225px;
 }
