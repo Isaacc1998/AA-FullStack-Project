@@ -28,6 +28,9 @@ class Api::UsersController < ApplicationController
     @user = current_user
     # @user.photo.attach(user_params[:photo])
     # p "helllloooooo"
+    p user_params[:username]
+    p user_params[:email]
+    
     if @user.update(user_params)
       render "api/users/show"
     else
@@ -38,7 +41,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :photo)
+    params.require(:user).permit(:email, :username, :password, :photo, :Pastimages => [])
   end
 end
 

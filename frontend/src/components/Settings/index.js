@@ -36,6 +36,7 @@ function Settings() {
 
     if (imageFile) {
       formData.append("user[photo]", imageFile);
+      // formData.append("user[Pastimages][]", "test1");
       dispatch(userActions.update({ formData: formData, id: userId }));
     }
   }, [imageFile]);
@@ -61,6 +62,7 @@ function Settings() {
   //   e.preventDefault();
 
   // };
+  // console.log(imageURL);
 
   return (
     <div className="background10">

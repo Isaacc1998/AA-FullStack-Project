@@ -11,6 +11,7 @@
         json.email user.email
         json.username user.username
         json.photoURL user.photo.url
+        json.images user.Pastimages
         json.created_at user.created_at 
         json.updated_at user.updated_at
     end
