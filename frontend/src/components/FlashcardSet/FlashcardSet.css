@@ -312,7 +312,15 @@
 
 .body {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.back-body {
+  width: 320px;
+  height: 244px;
+  margin-left: 20px;
+  word-wrap: break-word;
+  /* white-space: pre-wrap; */
 }
 
 .backImageContainer {
@@ -324,8 +332,8 @@
   width: 266px;
   height: 245px;
   border-radius: 0.5rem;
-  left: -125px;
-  bottom: -125px;
+  left: -300px;
+  bottom: 75px;
 }
 
 .addTo:hover,

@@ -38,7 +38,7 @@ function Flashcard({ flashcard }) {
           <div className="tracker">
             {flashcard.number + " / " + flashcard.length}
           </div>
-          {flashcard && <div className="body">{flashcard.front}</div>}
+          {flashcard && <div className="body-front">{flashcard.front}</div>}
         </div>
         <div className="back">
           <div className="label">Definition</div>
@@ -47,7 +47,8 @@ function Flashcard({ flashcard }) {
           </div>
           {flashcard && (
             <div className="body">
-              {flashcard.back} {image}
+              <div className="back-body">{flashcard.back}</div>
+              {image}
             </div>
           )}
         </div>
