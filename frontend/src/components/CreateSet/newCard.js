@@ -93,6 +93,7 @@ function NewCard({
     const file = e.currentTarget.files[0];
     if (file) {
       const fileReader = new FileReader();
+      // console.log(file, " this is file");
       fileReader.readAsDataURL(file);
       fileReader.onload = () => {
         setImageFile(file);
@@ -126,6 +127,7 @@ function NewCard({
   const preview = imageURL ? (
     <img src={imageURL} alt="" className="cardImage" />
   ) : null;
+  // console.log(imageURL);
   return (
     <div className="newCard">
       <div className="cardNum">

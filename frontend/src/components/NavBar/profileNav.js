@@ -23,6 +23,7 @@ function ProfileNav({ user }) {
 
   useEffect(() => {
     const image = getProfileImage();
+    // let userId = user.id;
     let userId = Object.keys(sessionUser)[0];
     let user = Object.values(sessionUser)[0];
     if (user.photoURL === null) {

@@ -20,17 +20,19 @@ function SetDisplay({ set }) {
     // if () {
 
     // }
-    dispatch(userActions.getUser(set.authorId));
+    // dispatch(userActions.getUser(set.authorId));
     dispatch(flashcardActions.getFlashcards(set.id));
     dispatch(userActions.getAllUsers());
     setTimeout(() => {
-      setUsername(users[set.authorId].user.username);
+      // setUsername(users[set.authorId].user.username);
     }, 100);
   }, []);
 
   useEffect(() => {
-    let pic = allUsers[set.authorId].photoURL;
-    setProfileImage(pic);
+    if (allUsers) {
+      let pic = allUsers[set.authorId].photoURL;
+      setProfileImage(pic);
+    }
   }, [allUsers]);
 
   useEffect(() => {
@@ -51,7 +53,10 @@ function SetDisplay({ set }) {
   };
 
   let preview;
-  if (allUsers[set.authorId].photoURL) {
+  // console.log(set, "this is set");
+  // console.log(profileImage);
+  // if (allUsers[set.authorId].photoURL) {
+  if (profileImage) {
     preview = <img className="previewProfileImage" src={profileImage} alt="" />;
   } else {
     preview = "";

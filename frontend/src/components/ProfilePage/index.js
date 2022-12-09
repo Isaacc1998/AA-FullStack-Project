@@ -8,6 +8,7 @@ import { resetSets } from "../../store/flashcardSet";
 import NavBar from "../NavBar";
 import flashcardSetReducer from "../../store/flashcardSet";
 import FlashcardSet from "../FlashcardSet";
+import * as flashcardActions from "../../store/flashcard";
 import "./ProfilePage.css";
 
 function ProfilePage() {
@@ -22,6 +23,7 @@ function ProfilePage() {
     // dispatch(resetSets());
     // dispatch(setActions.getUserFlashcardSets());
     dispatch(setActions.getAllFlashcardSets());
+    dispatch(flashcardActions.getFlashcards());
   }, []);
 
   useEffect(() => {

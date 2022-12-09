@@ -311,20 +311,26 @@
 }
 
 .body {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .back-body {
+  position: relative;
   width: 320px;
   height: 244px;
   margin-left: 20px;
+  /* right: 30px; */
   word-wrap: break-word;
   /* white-space: pre-wrap; */
 }
 
 .backImageContainer {
   position: relative;
+  width: 266px;
+  height: 245px;
 }
 
 .backImage {
@@ -332,7 +338,10 @@
   width: 266px;
   height: 245px;
   border-radius: 0.5rem;
-  left: -300px;
+  /* margin-bottom: 30px; */
+  /* left: -300px; */
+  margin-left: 30px;
+  left: 5px;
   bottom: 75px;
 }
 

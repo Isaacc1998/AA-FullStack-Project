@@ -131,3 +131,10 @@
   display: none;
   text-decoration: none;
 }
+
+.past-image {
+  height: 70px;
+  aspect-ratio: auto 70 / 70;
+  width: 70px;
+  border-radius: 50%;
+}

@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { ThemeProvider } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as userActions from "../../store/user";
 import "./Settings.css";
 
 function Settings() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const file = useRef(null);
   const sessionUser = useSelector((state) => {
     return state.session.user;
@@ -12,21 +15,51 @@ function Settings() {
   const users = useSelector((state) => {
     return state.users.user;
   });
-  let photo;
+  // const user = useSelector((state) => {
+  //   return Object.values(state.session.user)[0];
+  // });
+
+  // const user2 = useSelector((state) => {
+  //   return Object.values(state.users.user)[0];
+  // });
+  const [images, setImages] = useState([]);
+
+  let photo = "";
+  if (sessionUser) {
+    photo = Object.values(sessionUser)[0].photoURL;
+  }
+
+  let tempImages = [];
   if (users) {
-    photo = Object.values(users)[0].photoURL;
+    tempImages = Object.values(users)[0].images;
   }
 
   const [profilePic, setProfilePic] = useState(
-    Object.values(sessionUser)[0].photoURL
+    // Object.values(sessionUser)[0].photoURL
+    photo
   );
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState(null);
 
+  // useEffect(() => {
+  //   setImages(Object.values(sessionUser)[0].images);
+  // }, [Object.values(sessionUser)[0].images]);
+
   useEffect(() => {
-    if (users) {
-      setProfilePic(photo);
+    dispatch(userActions.getUser(Object.values(sessionUser)[0].id));
+  }, []);
+
+  useEffect(() => {
+    if (tempImages.length > 0) {
+      setImages(Object.values(users)[0].images);
     }
+  }, [tempImages]);
+
+  useEffect(() => {
+    if (photo) {
+      setProfilePic(Object.values(sessionUser)[0].photoURL);
+    }
+    // console.log("changed PROFILEPIC");
   }, [photo]);
 
   useEffect(() => {
@@ -34,11 +67,27 @@ function Settings() {
 
     const formData = new FormData();
 
-    if (imageFile) {
-      formData.append("user[photo]", imageFile);
-      // formData.append("user[Pastimages][]", "test1");
-      dispatch(userActions.update({ formData: formData, id: userId }));
-    }
+    setTimeout(() => {
+      if (imageFile && imageURL) {
+        // *is session not updating correctly?
+        // console.log("hit imagefile");
+        formData.append("user[photo]", imageFile);
+        let array = Object.values(sessionUser)[0].images;
+        // console.log(array, "array before");
+        if (array.length === 13) {
+          array.shift();
+        }
+        // console.log(imageURL, "this is URL");
+        array.push(imageURL);
+        // console.log(array, "array after");
+        formData.append("user[pastimages][]", array);
+        if (array.length > 0) {
+          // console.log(array, "dispatched");
+          dispatch(userActions.update({ formData: formData, id: userId }));
+        }
+        // history.push("/settings");
+      }
+    }, 500);
   }, [imageFile]);
 
   const handleChange = (e) => {
@@ -47,8 +96,8 @@ function Settings() {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(temp);
       fileReader.onload = () => {
-        setImageFile(temp);
         setImageURL(fileReader.result);
+        setImageFile(temp);
       };
     }
   };
@@ -62,7 +111,7 @@ function Settings() {
   //   e.preventDefault();
 
   // };
-  // console.log(imageURL);
+  // console.log(images, " this is images");
 
   return (
     <div className="background10">
@@ -73,7 +122,16 @@ function Settings() {
         </div>
         <div className="profile-selector-box">
           <h3 className="choose-header">Choose your profile picture</h3>
-          <div className="image-gallery"></div>
+          <div className="image-gallery">
+            {images &&
+              images.map((image) => {
+                // console.log(image, " this is an image");
+                let preview = image ? (
+                  <img src={image} alt="" className="past-image" />
+                ) : null;
+                return preview;
+              })}
+          </div>
           <div className="or-divider">
             <div className="or-text">or</div>
           </div>

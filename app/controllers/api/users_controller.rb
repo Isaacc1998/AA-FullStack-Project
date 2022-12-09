@@ -27,9 +27,19 @@ class Api::UsersController < ApplicationController
   def update 
     @user = current_user
     # @user.photo.attach(user_params[:photo])
-    # p "helllloooooo"
-    p user_params[:username]
-    p user_params[:email]
+    # hash = {}
+    # hash[:username] = user_params[:username]
+    # hash[:email] = user_params[:email]
+    # hash[:password] = user_params[:password]
+    # hash[:photo] = user_params[:photo]
+    # temp = [];
+    # @user.pastimages.each do |image| 
+    #   temp << image;
+    # end 
+    # temp << user_params[:pastimages]
+    # hash[:pastimages] = temp
+    # p user_params[:username]
+    # p user_params[:email]
     
     if @user.update(user_params)
       render "api/users/show"
@@ -41,7 +51,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :photo, :Pastimages => [])
+    params.require(:user).permit(:email, :username, :password, :photo, :pastimages => [])
   end
 end
 
