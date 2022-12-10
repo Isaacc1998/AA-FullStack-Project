@@ -25,6 +25,17 @@ const receiveUser = (user) => ({
   user,
 });
 
+export const normalUpdate = (params) => async (dispatch) => {
+  const { array, id } = params;
+  const res = await csrfFetch(`/api/users/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ pastimages: array }),
+  });
+
+  const data = await res.json();
+  dispatch(updateUser(data));
+};
+
 export const update = (params) => async (dispatch) => {
   const { formData, id } = params;
   // console.log(id, "formdata2");

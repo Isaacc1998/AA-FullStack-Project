@@ -39,8 +39,8 @@ function ProfileNav({ user }) {
 
   useEffect(() => {
     if (users) {
-      setUserImage(Object.values(sessionUser)[0].photoURL);
-      setCurrentUser(Object.values(sessionUser)[0]);
+      setUserImage(Object.values(users)[0].photoURL);
+      setCurrentUser(Object.values(users)[0]);
     }
   }, [photo]);
 

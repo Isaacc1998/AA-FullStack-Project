@@ -24,20 +24,18 @@ function Settings() {
   // });
   const [images, setImages] = useState([]);
 
-  let photo = "";
-  if (sessionUser) {
-    photo = Object.values(sessionUser)[0].photoURL;
-  }
-
-  let tempImages = [];
+  let photo;
   if (users) {
-    tempImages = Object.values(users)[0].images;
+    photo = Object.values(users)[0].photoURL;
   }
 
-  const [profilePic, setProfilePic] = useState(
-    // Object.values(sessionUser)[0].photoURL
-    photo
-  );
+  // let tempImages = [];
+  // if (users) {
+  //   tempImages = Object.values(users)[0].images;
+  // }
+
+  const [profilePic, setProfilePic] = useState();
+  // Object.values(sessionUser)[0].photoURL
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState(null);
 
@@ -50,14 +48,14 @@ function Settings() {
   }, []);
 
   useEffect(() => {
-    if (tempImages.length > 0) {
+    if (users) {
       setImages(Object.values(users)[0].images);
     }
-  }, [tempImages]);
+  }, [users]);
 
   useEffect(() => {
-    if (photo) {
-      setProfilePic(Object.values(sessionUser)[0].photoURL);
+    if (users) {
+      setProfilePic(Object.values(users)[0].photoURL);
     }
     // console.log("changed PROFILEPIC");
   }, [photo]);
@@ -67,27 +65,27 @@ function Settings() {
 
     const formData = new FormData();
 
-    setTimeout(() => {
-      if (imageFile && imageURL) {
-        // *is session not updating correctly?
-        // console.log("hit imagefile");
-        formData.append("user[photo]", imageFile);
-        let array = Object.values(sessionUser)[0].images;
-        // console.log(array, "array before");
-        if (array.length === 13) {
-          array.shift();
-        }
-        // console.log(imageURL, "this is URL");
-        array.push(imageURL);
-        // console.log(array, "array after");
-        formData.append("user[pastimages][]", array);
-        if (array.length > 0) {
-          // console.log(array, "dispatched");
-          dispatch(userActions.update({ formData: formData, id: userId }));
-        }
-        // history.push("/settings");
+    // setTimeout(() => {
+    if (imageFile && users) {
+      formData.append("user[photo]", imageFile);
+      // let array = [...Object.values(users)[0].images];
+      // if (array.length === 13) {
+      //   array.shift();
+      // }
+      // array.push(imageURL);
+      // formData.append("user[pastimages][]", array);
+      dispatch(userActions.update({ formData: formData, id: userId }));
+      let array = [...Object.values(users)[0].images];
+      if (array.length === 13) {
+        array.pop();
       }
-    }, 500);
+      if (!array.includes(imageURL)) {
+        array.unshift(imageURL);
+        // array.push(imageURL);
+        dispatch(userActions.normalUpdate({ array: array, id: userId }));
+      }
+    }
+    // }, 500);
   }, [imageFile]);
 
   const handleChange = (e) => {
@@ -112,12 +110,19 @@ function Settings() {
 
   // };
   // console.log(images, " this is images");
-
+  let previewProfileImage;
+  if (profilePic) {
+    previewProfileImage = (
+      <img className="user-image" src={profilePic} alt="" />
+    );
+  } else {
+    previewProfileImage = "";
+  }
   return (
     <div className="background10">
       <div className="profile-settings-container">
         <div className="settings-box-title">
-          <img src={profilePic} className="user-image"></img>
+          {previewProfileImage}
           <div className="profilePicture-header">Profile Picture</div>
         </div>
         <div className="profile-selector-box">
