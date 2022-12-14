@@ -9,7 +9,7 @@
 }
 
 .email {
-  margin-top: 0.5%;
+  margin-top: 1.5%;
   margin-bottom: 0.5%;
   width: 500px;
   height: 50px;
@@ -21,7 +21,7 @@
 }
 
 .username {
-  margin-top: 0.5%;
+  margin-top: 1.5%;
   margin-bottom: 0.5%;
   width: 500px;
   height: 50px;
@@ -33,7 +33,7 @@
 }
 
 .password2 {
-  margin-top: 0.5%;
+  margin-top: 1.5%;
   width: 500px;
   height: 50px;
   padding-left: 20px;

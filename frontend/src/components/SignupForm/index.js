@@ -48,10 +48,10 @@ function SignupForm() {
     );
   };
   return (
-    <>
+    <div className="login-container">
       <form id="form" onSubmit={handleSubmit}>
         <div className="signup">
-          <h2 className="title">Sign Up</h2>
+          <h2 className="title-login">Sign Up</h2>
 
           <div id="errors">
             {errors.map((error) => (
@@ -87,7 +87,7 @@ function SignupForm() {
             required
           />
           <label className="text">Password</label>
-          <button className="submit" type="submit">
+          <button id="submit-password" className="submit" type="submit">
             Sign Up
           </button>
           <input
@@ -98,24 +98,32 @@ function SignupForm() {
           />
         </div>
       </form>
-      <div className="favicons">
-        <a href="https://github.com/Isaacc1998">
-          <BsGithub className="git-logo" size="2.5rem" color="pink"></BsGithub>
-        </a>
-        <a href="https://www.linkedin.com/in/isaac-choi-38636723b/">
-          <BsLinkedin
-            className="linked-logo"
-            size="2.5rem"
-            color="pink"
-          ></BsLinkedin>
-        </a>
-        <FaAngellist
-          className="angel-logo"
-          size="2.5rem"
-          color="pink"
-        ></FaAngellist>
+      <div className="fav-container">
+        <div className="favicons">
+          <a href="https://github.com/Isaacc1998">
+            <BsGithub
+              className="git-logo"
+              size="2.5rem"
+              color="pink"
+            ></BsGithub>
+          </a>
+          <a href="https://www.linkedin.com/in/isaac-choi-38636723b/">
+            <BsLinkedin
+              className="linked-logo"
+              size="2.5rem"
+              color="pink"
+            ></BsLinkedin>
+          </a>
+          <a href="https://angel.co/u/isaac-s-choi">
+            <FaAngellist
+              className="angel-logo"
+              size="2.5rem"
+              color="pink"
+            ></FaAngellist>
+          </a>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

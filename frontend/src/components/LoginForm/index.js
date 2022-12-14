@@ -52,10 +52,10 @@ function LoginForm() {
   };
 
   return (
-    <>
+    <div className="login-container">
       <form id="form" onSubmit={handleSubmit}>
         <div className="login">
-          <h2 className="title">Log In</h2>
+          <h2 className="title-login">Log In</h2>
           <div id="errors">
             {errors.map((error) => (
               <div className="error" key={error}>
@@ -82,7 +82,7 @@ function LoginForm() {
             required
           />
           <label className="text">Password</label>
-          <button className="submit" type="submit">
+          <button id="submit-password" className="submit" type="submit">
             Log in
           </button>
           <input
@@ -92,6 +92,8 @@ function LoginForm() {
             value="Log in as Demo User"
           />
         </div>
+      </form>
+      <div className="fav-container">
         <div className="favicons">
           <a href="https://github.com/Isaacc1998">
             <BsGithub
@@ -107,14 +109,16 @@ function LoginForm() {
               color="pink"
             ></BsLinkedin>
           </a>
-          <FaAngellist
-            className="angel-logo"
-            size="2.5rem"
-            color="pink"
-          ></FaAngellist>
+          <a href="https://angel.co/u/isaac-s-choi">
+            <FaAngellist
+              className="angel-logo"
+              size="2.5rem"
+              color="pink"
+            ></FaAngellist>
+          </a>
         </div>
-      </form>
-    </>
+      </div>
+    </div>
   );
 }
 

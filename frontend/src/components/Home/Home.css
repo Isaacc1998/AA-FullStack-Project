@@ -7,6 +7,18 @@
 * {
   font-family: herme, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+#b4 {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  top: 50px;
+  width: 100%;
+  height: 95%;
+  background-color: rgb(166, 126, 126);
+  z-index: 100;
+}
+
 .background4 {
   display: flex;
   flex-direction: column;

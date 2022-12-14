@@ -4,12 +4,14 @@ import sessionReducer from "./session";
 import flashcardSetReducer from "./flashcardSet";
 import flashcardReducer from "./flashcard";
 import userReducer from "./user";
+import historyReducer from "./history";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   sets: flashcardSetReducer,
   flashcards: flashcardReducer,
   users: userReducer,
+  history: historyReducer,
 });
 
 let enhancer;

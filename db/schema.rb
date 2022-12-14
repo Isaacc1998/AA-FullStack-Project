@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_06_072356) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_12_071914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_072356) do
     t.index ["set_id"], name: "index_flashcards_on_set_id"
   end
 
+  create_table "histories", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_histories_on_owner_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "username", null: false
@@ -76,4 +83,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_072356) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "flashcard_sets", "users", column: "author_id"
   add_foreign_key "flashcards", "flashcard_sets", column: "set_id"
+  add_foreign_key "histories", "users", column: "owner_id"
 end

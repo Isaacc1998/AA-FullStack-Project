@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :flashcard_sets, only: [:index, :show, :create, :update, :destroy] do 
       resources :flashcards, only: [:index, :show, :create, :update, :destroy] 
     end
+    resources :histories, only: [:index, :show, :create, :update, :destroy]
   end
 
   get '*path', to: "static_pages#frontend_index"

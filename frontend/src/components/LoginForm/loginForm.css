@@ -2,10 +2,14 @@
   margin-top: 50px;
 }
 
-.title {
+.title-login {
+  display: flex;
+  justify-content: start;
   color: aliceblue;
   text-align: left;
   width: 500px;
+  font-size: 36px;
+  margin-bottom: 32px;
 }
 
 .login {
@@ -19,7 +23,7 @@
 }
 
 .credential {
-  margin-top: 1.5%;
+  margin-top: 2%;
   width: 500px;
   height: 50px;
   padding-left: 20px;
@@ -47,8 +51,12 @@
   width: 500px;
 }
 
+#submit-password {
+  margin-top: 6%;
+}
+
 .submit {
-  margin-top: 1%;
+  margin-top: 1.5%;
   width: 500px;
   height: 50px;
   padding: 10px, 20px;
@@ -80,12 +88,26 @@
   color: rgb(255, 132, 0);
 }
 
+.fav-container {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  width: auto;
+  top: 100px;
+}
+
 .favicons {
-  position: absolute;
+  position: static;
   display: flex;
   justify-content: space-between;
   height: 50px;
   width: 160px;
-  left: 1475px;
-  top: 825px;
+  top: 100px;
+}
+
+.login-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

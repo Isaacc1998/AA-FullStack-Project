@@ -74,7 +74,7 @@ export const create = (set) => async (dispatch) => {
   });
   const data = await res.json();
   dispatch(createSet(data));
-  console.log(data);
+  // console.log(data);
   // return Object.keys(data)[0].id;
 };
 

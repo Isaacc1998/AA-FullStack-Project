@@ -3,6 +3,7 @@ import { ThemeProvider } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as userActions from "../../store/user";
+import * as historyActions from "../../store/history";
 import "./Settings.css";
 
 function Settings() {
@@ -14,6 +15,9 @@ function Settings() {
   });
   const users = useSelector((state) => {
     return state.users.user;
+  });
+  const histories = useSelector((state) => {
+    return state.history;
   });
   // const user = useSelector((state) => {
   //   return Object.values(state.session.user)[0];
@@ -29,22 +33,23 @@ function Settings() {
     photo = Object.values(users)[0].photoURL;
   }
 
-  // let tempImages = [];
-  // if (users) {
-  //   tempImages = Object.values(users)[0].images;
-  // }
+  let userHistory;
+  if (histories) {
+    let temp = Object.entries(histories);
+    for (let j = 0; j < temp.length; j++) {
+      if (temp[j][1].ownerId === Object.values(sessionUser)[0].id) {
+        userHistory = temp[j];
+      }
+    }
+  }
 
   const [profilePic, setProfilePic] = useState();
-  // Object.values(sessionUser)[0].photoURL
   const [imageFile, setImageFile] = useState(null);
   const [imageURL, setImageURL] = useState(null);
 
-  // useEffect(() => {
-  //   setImages(Object.values(sessionUser)[0].images);
-  // }, [Object.values(sessionUser)[0].images]);
-
   useEffect(() => {
     dispatch(userActions.getUser(Object.values(sessionUser)[0].id));
+    dispatch(historyActions.getHistories());
   }, []);
 
   useEffect(() => {
@@ -57,13 +62,13 @@ function Settings() {
     if (users) {
       setProfilePic(Object.values(users)[0].photoURL);
     }
-    // console.log("changed PROFILEPIC");
   }, [photo]);
 
   useEffect(() => {
     let userId = Object.keys(sessionUser)[0];
 
     const formData = new FormData();
+    const formData2 = new FormData();
 
     // setTimeout(() => {
     if (imageFile && users) {
@@ -75,14 +80,20 @@ function Settings() {
       // array.push(imageURL);
       // formData.append("user[pastimages][]", array);
       dispatch(userActions.update({ formData: formData, id: userId }));
-      let array = [...Object.values(users)[0].images];
-      if (array.length === 13) {
-        array.pop();
-      }
-      if (!array.includes(imageURL)) {
-        array.unshift(imageURL);
-        // array.push(imageURL);
-        dispatch(userActions.normalUpdate({ array: array, id: userId }));
+
+      if (userHistory) {
+        let array = userHistory[1].images;
+        if (array.length === 13) {
+          array.pop();
+        }
+        console.log(array, "this is the array");
+        // array.unshift(imageURL);
+        formData2.append("history[photos][]", array);
+        dispatch(
+          historyActions.update({ formData: formData2, id: userHistory[0] })
+        );
+      } else {
+        dispatch(historyActions.create());
       }
     }
     // }, 500);

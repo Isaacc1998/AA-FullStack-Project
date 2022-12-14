@@ -21,6 +21,13 @@ function Home() {
   const [rows, setRows] = useState();
 
   useEffect(() => {
+    let view = document.getElementById("b4");
+    setTimeout(() => {
+      view.style.display = "none";
+    }, 1500);
+  }, []);
+
+  useEffect(() => {
     dispatch(setActions.getAllFlashcardSets());
     dispatch(userActions.getAllUsers());
   }, []);
@@ -40,6 +47,7 @@ function Home() {
 
   return (
     <div className="background4">
+      <div id="b4"></div>
       <h3 className="homeHeader">Study Sets</h3>
       <div className="flexContainer">
         <div className="rows">

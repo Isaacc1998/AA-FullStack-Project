@@ -10,6 +10,7 @@ import * as sessionActions from "./store/session";
 import * as setActions from "./store/flashcardSet";
 import * as flashcardActions from "./store/flashcard";
 import * as userActions from "./store/user";
+import * as historyActions from "./store/history";
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV !== "production") {
   window.setActions = setActions;
   window.flashcardActions = flashcardActions;
   window.userActions = userActions;
+  window.historyActions = historyActions;
 }
 
 function Root() {
