@@ -21,12 +21,14 @@ function SetDisplay({ set }) {
 
     // }
     // dispatch(userActions.getUser(set.authorId));
-    dispatch(flashcardActions.getFlashcards(set.id));
-    dispatch(userActions.getAllUsers());
+    if (set) {
+      dispatch(flashcardActions.getFlashcards(set.id));
+      dispatch(userActions.getAllUsers());
+    }
     setTimeout(() => {
       // setUsername(users[set.authorId].user.username);
     }, 100);
-  }, []);
+  }, [set]);
 
   useEffect(() => {
     if (allUsers) {

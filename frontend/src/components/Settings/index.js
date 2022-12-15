@@ -139,14 +139,14 @@ function Settings() {
         <div className="profile-selector-box">
           <h3 className="choose-header">Choose your profile picture</h3>
           <div className="image-gallery">
-            {images &&
+            {/* {images &&
               images.map((image) => {
                 // console.log(image, " this is an image");
                 let preview = image ? (
                   <img src={image} alt="" className="past-image" />
                 ) : null;
                 return preview;
-              })}
+              })} */}
           </div>
           <div className="or-divider">
             <div className="or-text">or</div>

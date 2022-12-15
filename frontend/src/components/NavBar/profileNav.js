@@ -26,6 +26,8 @@ function ProfileNav({ user }) {
     // let userId = user.id;
     let userId = Object.keys(sessionUser)[0];
     let user = Object.values(sessionUser)[0];
+    // let otherUser = Object.values(users)[0];
+
     if (user.photoURL === null) {
       const formData = new FormData();
       formData.append("user[email]", user.email);
@@ -33,6 +35,7 @@ function ProfileNav({ user }) {
       // console.log(image, "this is imageFile");
       formData.append("user[photo]", image);
       dispatch(userActions.update({ formData: formData, id: userId }));
+      dispatch(sessionActions.restoreSession());
     }
     dispatch(userActions.getUser(userId));
   }, [sessionUser]);
